@@ -1,4 +1,6 @@
 from django.shortcuts import render
+from rest_framework.response import Response
+from rest_framework.decorators import api_view
 from .serializers import PostSerializer
 from rest_framework import generics
 from .models import Post
@@ -7,3 +9,16 @@ from .models import Post
 class PostListCreate(generics.ListCreateAPIView):
     queryset = Post.objects.all()
     serializer_class = PostSerializer
+
+
+# @api_view(['GET'])
+# def getPosts(request):
+#     posts = Post.objects.all()
+#     serializer = PostSerializer(posts, many=True)
+#     return Response(serializer.data)
+
+@api_view(['GET'])
+def getPost(request, pk):
+    post = Post.objects.get(id=pk)
+    serializer = PostSerializer(post, many=False)
+    return Response(serializer.data)
