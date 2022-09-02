@@ -4,9 +4,9 @@ import React from "react";
 
 const HomePage = () => {
     const [posts , setPosts] = useState([]);
-
+    const navigate = useNavigate();
     useEffect(() => {
-        fetch('http://127.0.0.1:8000/api/post')
+        fetch('http://127.0.0.1:8000/posts/api/post')
             .then((response) => response.json())
             .then((data) => setPosts(data));
     }, []);
@@ -22,10 +22,15 @@ const HomePage = () => {
         )
     })
 
+    const goToLogin = () => {
+        navigate('/login')
+    }
+
     return (
         <>
         
         <div className="posts-container" role="posts-display">{postsDisplay}</div>
+        <button onClick={goToLogin}></button>
         </>
     )
 }
