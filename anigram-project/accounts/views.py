@@ -12,8 +12,10 @@ from django.contrib import auth
 @method_decorator(csrf_protect, name="dispatch")
 class CheckAuthenticatedView(APIView):
     def get(self,request, format=None):
+        user = self.request.user
+
         try:
-            isAuthenticated = User.is_authenticated
+            isAuthenticated = user.is_authenticated
 
             if isAuthenticated:
                 return Response({ 'isAuthenticated': 'success' })
@@ -45,7 +47,7 @@ class SignupView(APIView):
                         user = User.objects.get(id=user.id)
 
                         user_profile = UserProfile.objects.create(user=user, first_name='', last_name='', phone='', city='')
-                        user_profile.save()
+                        
 
                         return Response({ 'success': 'User created successfully' })
             else:

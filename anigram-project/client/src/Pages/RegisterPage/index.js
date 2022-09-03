@@ -1,7 +1,8 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { useNavigate, Link } from "react-router-dom";
 import { connect } from 'react-redux';
 import { register } from '../../actions/auth';
+import CSRFToken from '../../components/CSRFToken'
 
 const Register = ({ register }) => {
     const [formData, setFormData] = useState({
@@ -17,6 +18,7 @@ const Register = ({ register }) => {
 
     const onChange = e => setFormData({...formData, [e.target.name]: e.target.value});
 
+    
     const onSubmit = e => {
         e.preventDefault();
 
@@ -24,15 +26,19 @@ const Register = ({ register }) => {
             register(username, password, re_password);
             setAccountCreated(true);
         }
-    };
-
-    if (accountCreated)
-        navigate('/')
+     };
+    
+    useEffect(() => {
+    if (accountCreated) {
+        navigate('/login');
+    }
+}, [accountCreated])
 return (
     <div className='container mt-5'>
         <h1> Register for an Account </h1>
         <p> Create an account to join in on the Anigram fun.</p>
         <form onSubmit={e => onSubmit(e)}>
+            <CSRFToken  />
             <div className='form-group'>
                 <label className='form-label'>Username: </label>
                 <input
@@ -73,6 +79,9 @@ return (
             </div>
             <button className='btn btn-primary mt-3' type='submit'>Register</button>
         </form>
+        <p className='mt-3'>
+            Already have an account? <Link to='/login'>Sign in</Link>
+        </p>
     </div>
 );
 };
