@@ -51,10 +51,12 @@ export const logout = () => async dispatch => {
         }
     };
 
-    
+    const body = JSON.stringify({
+        'withCredientials': true
+    })
 
     try {
-        const res = await axios.post(`http://127.0.0.1:8000/accounts/logout`, config)
+        const res = await axios.post(`http://127.0.0.1:8000/accounts/logout`, body, config)
 
         if (res.data.success) {
             dispatch({
