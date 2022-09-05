@@ -11,6 +11,7 @@ urlpatterns = [
     path('profile/', include('user.urls')),
     path('posts/', include('posts.urls')),
     path('', include('client.urls')),
+    path('chat/', include('chat.urls'))
 ]
 
 urlpatterns += [re_path(r'^.*', TemplateView.as_view(template_name='index.html'))]
