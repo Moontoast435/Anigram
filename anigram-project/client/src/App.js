@@ -1,20 +1,24 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
-import { Home, Login, Register, Dashboard  } from "./Pages"
-
+// import { PageWrapper } from "./layout";
+import * as Pages from "./pages";
 
 const App = () => {
     return (
         <div className="App">
              <Routes>
-                <Route exact path="/" element={<Home />} />
-                <Route exact path="/register" element={<Register />} />
-                <Route exact path="/login" element={<Login />} />
-                <Route exact path="/dashboard" element={<Dashboard />} />
+             {/* <Route exact path="/" element={<PageWrapper />}> */}
+                <Route exact path="/" element={<Pages.Home />} />
+                <Route exact path="/register" element={<Pages.Register />} />
+                <Route exact path="/create" element={<Pages.CreatePost />} />
+                <Route exact path="/login" element={<Pages.Login />} />
+                <Route exact path="/dashboard" element={<Pages.Dashboard />} />
+                <Route exact path ="/main" element={<Pages.MainPage />}/>
+                
+                <Route exact path="*" element={<Pages.NotFoundPage />} />
+                {/* </Route> */}
             </Routes> 
         </div>
     )
-
-}
-
+  }
 export default App;
