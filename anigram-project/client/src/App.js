@@ -1,16 +1,17 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
-import { HomePage } from "./Pages"
+import { PageWrapper } from "./layout";
+import * as Pages from "./pages";
 
-const App = () => {
-    return (
-        <div className="App">
-             <Routes>
-                <Route exact path="/" element={<HomePage />} />
-            </Routes> 
-        </div>
-    )
-
+function App() {
+  return (
+    <Routes>
+      <Route exact path="/" element={<PageWrapper />}>
+        <Route exact path="/" element={<Pages.HomePage />} />
+        <Route exact path="*" element={<Pages.NotFoundPage />} />
+      </Route>
+    </Routes>
+  );
 }
 
 export default App;
