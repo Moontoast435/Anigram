@@ -1,6 +1,6 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
-import { HomePage } from "./Pages"
+import { HomePage, ChatPage } from "./Pages"
 
 const App = () => {
     return (
