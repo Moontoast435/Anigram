@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import Navbar from '../components/NavBar'
 const Layout = ({ children }) => {
 
