@@ -1,11 +1,12 @@
 import React from 'react';
 
-const ChatOption = ({username}) => {
+const ChatOption = ({username, onClick}) => {
     const handleClick = () => {
-        console.log("handling the click")
+        console.log(`handling the click for user ${username}`)
+        onClick(username)
     }
     return (
-        <div onClick={handleClick}>
+        <div className='chat-option' onClick={handleClick}>
             <p>{username}</p>
         </div>
     );
