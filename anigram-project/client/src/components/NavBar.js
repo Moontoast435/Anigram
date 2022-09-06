@@ -14,8 +14,12 @@ const Navbar = () => {
                 <NavLink className="nav-link " aria-current="page" to="/dashboard">Dashboard</NavLink>
             </li>
             <li className="nav-item">
+                <NavLink className="nav-link " aria-current="page" to="/chats">Chat</NavLink>
+            </li>
+            <li className="nav-item">
                 <a className="nav-link " aria-current="page" onClick={() => logout} href='/'>Logout</a>
             </li>
+            
         </>
     );
 
@@ -27,6 +31,7 @@ const Navbar = () => {
             <li className="nav-item">
                 <NavLink className="nav-link " aria-current="page" to="/register">Register</NavLink>
             </li>
+            
         </>
     )
     return (

@@ -14,5 +14,5 @@ class Chats(models.Model):
     sender = models.CharField(max_length=100)
     recipient = models.CharField(max_length=100)
     message = models.CharField(max_length=1000)
-    date = models.DateTimeField()
+    date = models.CharField(max_length=100)
 
