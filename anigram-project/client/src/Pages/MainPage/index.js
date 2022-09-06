@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import React from 'react';
+import { useSelector } from 'react-redux';
 
 const MainPage = () => {
   let navigate = useNavigate();
@@ -11,20 +12,24 @@ const MainPage = () => {
     navigate('/create');
   }
 
-  const searchHandle = async (e) => {
-    let key = e.target.value;
-    let result = await fetch(`http://127.0.0.1:8000/search?search=${key}`);
+  const username = useSelector((state) => state.auth.username);
+  console.log(username);
+  console.log('hey there');
 
-    result = await result.json();
-    console.log(result);
+  // const searchHandle = async (e) => {
+  //   let key = e.target.value;
+  //   let result = await fetch(`http://127.0.0.1:8000/search?search=${key}`);
 
-    if (result) {
-      console.log(result);
-      // setPosts(result);
-    }
-  };
+  //   result = await result.json();
+  //   console.log(result);
+
+  //   if (result) {
+  //     console.log(result);
+  //     // setPosts(result);
+  //   }
+  // };
   useEffect(() => {
-    fetch('http://127.0.0.1:8000/api/post')
+    fetch('http://127.0.0.1:8000/posts/api/post')
       .then((response) => response.json())
       .then((data) => setPosts(data));
   }, []);
@@ -46,8 +51,8 @@ const MainPage = () => {
   return (
     <>
       <div className="posts-container" role="posts-display">
-        <input type="" onChange={searchHandle} />
-
+        {/* <input type="" onChange={searchHandle} /> */}
+        Posted By: {username}
         {postsDisplay}
         <button onClick={handleClick}>Make a post</button>
       </div>

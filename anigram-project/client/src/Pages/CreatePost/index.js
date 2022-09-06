@@ -2,42 +2,44 @@ import React from 'react';
 import { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-
+import Cookies from 'js-cookie';
 const CreatePost = () => {
-  //   const [post, setPost] = useState({
-  //     body: 'qqq',
-  //   });
   axios.defaults.withCredentials = true;
   let navigate = useNavigate();
-
   const [description, setDescription] = useState('');
   const [image_url, setImageUrl] = useState(null);
-  // const handleSubmit = (event) => {
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const post = { description, image_url };
+    fetch(`http://127.0.0.1:8000/posts/api/post/create`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-CSRFToken': Cookies.get('csrftoken'),
+      },
+      body: JSON.stringify(post),
+    });
+    navigate('/main');
+  };
+  // const handleSubmit = async (event) => {
   //   event.preventDefault();
   //   const post = { description, image_url };
-  //   fetch(`/api/post/create`, {
-  //     method: 'POST',
+
+  //   await axios.post('http://127.0.0.1:8000/posts/api/post/create', {
+  //     // method: 'POST',
   //     headers: {
   //       'Content-Type': 'application/json',
+  //       'X-CSRFToken': Cookies.get('csrftoken'),
   //     },
   //     body: JSON.stringify(post),
+  //     // body: JSON.stringify({ data: base64EncodedImage }),
   //   });
-  //   navigate('/');
+  //   console.log(post.description);
+  //   console.log(image_url);
+  //   // console.log(username1);
+
+  //   navigate('/main');
   // };
-  const handleSubmit = () => {
-    const uploadData = new FormData();
-    uploadData.append('description', description);
-    uploadData.append('image_url', image_url);
-
-    fetch('http://127.0.0.1:8000/api/post/create', {
-      method: 'POST',
-      body: uploadData,
-    });
-    setTimeout(() => {
-      navigate('/');
-    }, 30);
-  };
-
   return (
     <div>
       <form>
@@ -57,9 +59,8 @@ const CreatePost = () => {
           />
         </label>
       </form>
-      <button onClick={() => handleSubmit()}>Create</button>
+      <button onClick={handleSubmit}>Create</button>
     </div>
   );
 };
-
 export default CreatePost;
