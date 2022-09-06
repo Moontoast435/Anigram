@@ -11,7 +11,7 @@ const CreatePost = () => {
   const [description, setDescription] = useState('');
   const [image_url, setImageUrl] = useState(null);
 
-  const username = useSelector((state) => state.auth.username);
+  const username = useSelector((state) => state.profile.username);
   // console.log(username);
   // console.log('hey there');
 
@@ -37,6 +37,8 @@ const CreatePost = () => {
     let form_data = new FormData();
     form_data.append('description', description);
     form_data.append('image_url', image_url);
+    form_data.append('username', username);
+
     console.log(form_data);
     await fetch(`http://127.0.0.1:8000/posts/api/post/create`, {
       method: 'POST',
