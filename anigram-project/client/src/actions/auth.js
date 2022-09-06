@@ -7,12 +7,51 @@ import {
   LOGIN_FAIL,
   LOGOUT_SUCCESS,
   LOGOUT_FAIL,
+  AUTHENTICATED_SUCCESS,
+  AUTHENTICATED_FAIL
 } from "./seanTypes";
+
+export const checkAuthenticated = () => async dispatch => {
+  const config = {
+      headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+      }
+  };
+
+  try {
+      const res = await axios.get(`http://127.0.0.1:8000/accounts/authenticated`, config);
+      console.log(res);
+      if (res.data.error || res.data.isAuthenticated === 'error') {
+          dispatch({
+              type: AUTHENTICATED_FAIL,
+              payload: false
+          });
+      }
+      else if (res.data.isAuthenticated === 'success') {
+          dispatch({
+              type: AUTHENTICATED_SUCCESS,
+              payload: true
+          });
+      }
+      else {
+          dispatch({
+              type: AUTHENTICATED_FAIL,
+              payload: false
+          });
+      }
+  } catch(err) {
+      dispatch({
+          type: AUTHENTICATED_FAIL,
+          payload: false
+      });
+  }
+};
 
 export const login = (username, password) => async (dispatch) => {
   const config = {
     headers: {
-      Accept: "application/json",
+      'Accept': "application/json",
       "Content-Type": "application/json",
       "X-CSRFToken": Cookies.get("csrftoken"),
     },
@@ -30,7 +69,7 @@ export const login = (username, password) => async (dispatch) => {
     if (res.data.success) {
       dispatch({
         type: LOGIN_SUCCESS,
-        payload: res.data.username,
+        // payload: res.data.username,
       });
 
       // load the user
@@ -49,14 +88,14 @@ export const login = (username, password) => async (dispatch) => {
 export const logout = () => async (dispatch) => {
   const config = {
     headers: {
-      Accept: "application/json",
+      'Accept': "application/json",
       "Content-Type": "application/json",
       "X-CSRFToken": Cookies.get("csrftoken"),
     },
   };
 
   const body = JSON.stringify({
-    withCredientials: true,
+    'withCredentials': true,
   });
 
   try {
@@ -86,7 +125,7 @@ export const register =
   (username, password, re_password) => async (dispatch) => {
     const config = {
       headers: {
-        Accept: "application/json",
+        'Accept': "application/json",
         "Content-Type": "application/json",
         "X-CSRFToken": Cookies.get("csrftoken"),
       },

@@ -9,14 +9,13 @@ from django.utils.decorators import method_decorator
 from django.contrib.auth import authenticate
 from django.contrib import auth
 
-@method_decorator(csrf_protect, name="dispatch")
 class CheckAuthenticatedView(APIView):
     def get(self,request, format=None):
         user = self.request.user
-
+        print(user)
         try:
             isAuthenticated = user.is_authenticated
-
+            print(isAuthenticated)
             if isAuthenticated:
                 return Response({ 'isAuthenticated': 'success' })
             else:

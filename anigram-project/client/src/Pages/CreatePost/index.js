@@ -7,6 +7,8 @@ const CreatePost = () => {
   //   const [post, setPost] = useState({
   //     body: 'qqq',
   //   });
+  const username = useSelector(state => state.auth.username);
+
   axios.defaults.withCredentials = true;
   let navigate = useNavigate();
 
@@ -28,7 +30,7 @@ const CreatePost = () => {
     const uploadData = new FormData();
     uploadData.append('description', description);
     uploadData.append('image_url', image_url);
-
+    uploadData.append('username', username);
     fetch('http://127.0.0.1:8000/api/post/create', {
       method: 'POST',
       body: uploadData,
