@@ -11,6 +11,4 @@ urlpatterns = [
     path('api/post/<str:pk>', views.getPost, name='post')
 
 ]
-if settings.DEBUG:
-    urlpatterns += static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
 
