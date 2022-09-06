@@ -15,6 +15,7 @@ const Navbar = ({isAuthenticated, logout}) => {
             <li className="nav-item">
                 <a className="nav-link " aria-current="page" onClick={() => logout()} href='/'>Logout</a>
             </li>
+            
         </>
     );
 
@@ -26,6 +27,7 @@ const Navbar = ({isAuthenticated, logout}) => {
             <li className="nav-item">
                 <NavLink className="nav-link " aria-current="page" to="/register">Register</NavLink>
             </li>
+            
         </>
     )
     return (
