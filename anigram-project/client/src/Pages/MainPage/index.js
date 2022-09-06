@@ -32,7 +32,7 @@ const MainPage = () => {
   // };
   useEffect(() => {
 
-    fetch('https://anigram-application.herokuapp.com/api/post')
+    fetch('http://127.0.0.1:8000/api/post')
 
       .then((response) => response.json())
       .then((data) => setPosts(data));
