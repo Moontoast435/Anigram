@@ -13,7 +13,7 @@ export const load_user = () => async dispatch => {
         },
       };
     try {
-    const res = await axios.get(`https://anigram-application.herokuapp.com/profile/user`, config);
+    const res = await axios.get(`http://127.0.0.1:8000/profile/user`, config);
 
     if (res.data.error) {
         dispatch({

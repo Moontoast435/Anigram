@@ -2,10 +2,10 @@ import React, {useEffect, useState, useRef} from 'react';
 import {useSelector} from 'react-redux'
 import ChatOption from '../../components/chatOption';
 import Conversation from '../../components/conversation';
-import './style.css'
+// import './style.css'
 const ChatPage = () => {
 
-    const username = useSelector(state => state.auth.username);
+    const username = useSelector(state => state.profile.username);
     console.log("username is", username)
 
     const [socket, setSocket] = useState(null)
@@ -13,6 +13,7 @@ const ChatPage = () => {
     const [chatLog, setChatLog] = useState()
     const [target, setTarget] = useState(null)
     const chatUsers = useRef(null)
+
     useEffect(() => {
         try{
             console.log("Hello")

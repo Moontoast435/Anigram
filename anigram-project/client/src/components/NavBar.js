@@ -10,10 +10,13 @@ const Navbar = ({isAuthenticated, logout}) => {
     const authLinks = (
         <>
             <li className="nav-item">
-                <NavLink className="nav-link " aria-current="page" to="/dashboard">Dashboard</NavLink>
+                <NavLink className="nav-link " aria-current="page" exact="true" to="/dashboard">Dashboard</NavLink>
             </li>
             <li className="nav-item">
-                <a className="nav-link " aria-current="page" onClick={() => logout()} href='/'>Logout</a>
+                <NavLink className="nav-link " aria-current="page" exact="true" to="/chats">Chats</NavLink>
+            </li>
+            <li className="nav-item">
+                <a className="nav-link " aria-current="page" onClick={() => logout()} exact={true} href='/'>Logout</a>
             </li>
             
         </>
@@ -22,10 +25,10 @@ const Navbar = ({isAuthenticated, logout}) => {
     const guestLinks = (
         <>
             <li className="nav-item">
-                <NavLink className="nav-link " aria-current="page" to="/login">Login</NavLink>
+                <NavLink className="nav-link " aria-current="page" exact="true" to="/login">Login</NavLink>
             </li>
             <li className="nav-item">
-                <NavLink className="nav-link " aria-current="page" to="/register">Register</NavLink>
+                <NavLink className="nav-link " aria-current="page" exact="true" to="/register">Register</NavLink>
             </li>
             
         </>
@@ -33,7 +36,7 @@ const Navbar = ({isAuthenticated, logout}) => {
     return (
     <nav className="navbar navbar-expand-lg bg-light">
         <div className="container-fluid">
-            <Link className="navbar-brand" exact to="/">Anigram</Link>
+            <Link className="navbar-brand" exact="true" to="/">Anigram</Link>
             <button className="navbar-toggler" 
             type="button" 
             data-bs-toggle="collapse"
@@ -46,7 +49,7 @@ const Navbar = ({isAuthenticated, logout}) => {
             <div className="collapse navbar-collapse" id="navbarNav">
                 <ul className="navbar-nav">
                     <li className="nav-item">
-                        <NavLink className="nav-link " aria-current="page" exact to="/">Home</NavLink>
+                        <NavLink className="nav-link " aria-current="page" exact="true" to="/">Home</NavLink>
                     </li>
                     { isAuthenticated ? authLinks : guestLinks }
                 </ul>
