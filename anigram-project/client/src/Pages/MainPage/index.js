@@ -39,6 +39,7 @@ const MainPage = () => {
       <div>
         <div className="posts-display-board" role="posts" key={i}>
           {/* <p>{post.title}</p> */}
+          
           <p>
             Image: <img src={post.image_url} />
           </p>
