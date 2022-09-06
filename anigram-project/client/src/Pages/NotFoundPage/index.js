@@ -1,22 +1,23 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
-import { Button } from "../../components";
+// import { useNavigate } from "react-router-dom";
+// import { Button } from "../../components";
 
 const NotFoundPage = () => {
-  const navigator = useNavigate();
+  // const navigator = useNavigate();
 
-  const handleBack = () => {
-    navigator(-1);
-  };
+  // const handleBack = () => {
+  //   navigator(-1);
+  // };
 
   return (
     <>
-      <Button
+    <h1>Go back this is an error</h1>
+      {/* <Button
         onClick={(e) => {
           handleBack(e);
         }}
         text={<>Go Back</>}
-      />
+      /> */}
     </>
   );
 };

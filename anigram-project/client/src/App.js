@@ -14,6 +14,7 @@ const App = () => {
                 <Route exact path="/login" element={<Pages.Login />} />
                 <Route exact path="/dashboard" element={<Pages.Dashboard />} />
                 <Route exact path ="/main" element={<Pages.MainPage />}/>
+                <Route exact path ="/chats" element={<Pages.ChatPage />}/>
                 
                 <Route exact path="*" element={<Pages.NotFoundPage />} />
                 {/* </Route> */}
