@@ -2,12 +2,12 @@ import React from 'react';
 import { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-
+import Cookies from 'js-cookie'
 const CreatePost = () => {
   //   const [post, setPost] = useState({
   //     body: 'qqq',
   //   });
-  const username = useSelector(state => state.auth.username);
+  // const username = useSelector(state => state.auth.username);
 
   axios.defaults.withCredentials = true;
   let navigate = useNavigate();
@@ -26,18 +26,24 @@ const CreatePost = () => {
   //   });
   //   navigate('/');
   // };
-  const handleSubmit = () => {
-    const uploadData = new FormData();
-    uploadData.append('description', description);
-    uploadData.append('image_url', image_url);
-    uploadData.append('username', username);
-    fetch('http://127.0.0.1:8000/api/post/create', {
-      method: 'POST',
-      body: uploadData,
+  const handleSubmit = async (event) => {
+    // event.preventDefault();
+    const post = { description, image_url };
+
+    await axios.post('http://127.0.0.1:8000/posts/api/post/create', {
+      // method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-CSRFToken': Cookies.get('csrftoken'),
+      },
+      body: JSON.stringify(post),
+      // body: JSON.stringify({ data: base64EncodedImage }),
     });
-    setTimeout(() => {
-      navigate('/');
-    }, 30);
+    console.log(post.description);
+    console.log(image_url);
+    // console.log(username1);
+
+    navigate('/main');
   };
 
   return (
