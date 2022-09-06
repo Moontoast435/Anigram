@@ -1,1 +1,1 @@
-web: gunicorn anigram.wsgi
+web: gunicorn anigram:app
