@@ -135,7 +135,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-STATIC_ROOT = BASE_DIR / "client/static/client/build"
+STATIC_ROOT = BASE_DIR / "/build"
 
 STATICFILES_DIRS = [
    
