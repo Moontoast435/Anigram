@@ -12,6 +12,7 @@ import {
   AUTHENTICATED_FAIL
 } from "./seanTypes";
 
+
 export const checkAuthenticated = () => async dispatch => {
   const config = {
       headers: {
@@ -21,7 +22,7 @@ export const checkAuthenticated = () => async dispatch => {
   };
 
   try {
-      const res = await axios.get(`https://anigram-application.herokuapp.com/accounts/authenticated`, config);
+      const res = await axios.get(`http://127.0.0.1:8000/accounts/authenticated`, config);
       console.log(res);
       if (res.data.error || res.data.isAuthenticated === 'error') {
           dispatch({
@@ -62,7 +63,7 @@ export const login = (username, password) => async (dispatch) => {
 
   try {
     const res = await axios.post(
-      `https://anigram-application.herokuapp.com/accounts/login`,
+      `http://127.0.0.1:8000/accounts/login`,
       body,
       config
     );
@@ -100,7 +101,7 @@ export const logout = () => async (dispatch) => {
 
   try {
     const res = await axios.post(
-      `https://anigram-application.herokuapp.com/accounts/logout`,
+      `http://127.0.0.1:8000/accounts/logout`,
       body,
       config
     );
@@ -135,7 +136,7 @@ export const register =
 
     try {
       const res = await axios.post(
-        `https://anigram-application.herokuapp.com/accounts/register`,
+        `http://127.0.0.1:8000/accounts/register`,
         body,
         config
       );
