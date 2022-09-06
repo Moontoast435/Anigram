@@ -21,7 +21,7 @@ export const checkAuthenticated = () => async dispatch => {
   };
 
   try {
-      const res = await axios.get(`http://127.0.0.1:8000/accounts/authenticated`, config);
+      const res = await axios.get(`https://anigram-application.herokuapp.com/accounts/authenticated`, config);
       console.log(res);
       if (res.data.error || res.data.isAuthenticated === 'error') {
           dispatch({
@@ -62,7 +62,7 @@ export const login = (username, password) => async (dispatch) => {
 
   try {
     const res = await axios.post(
-      `http://127.0.0.1:8000/accounts/login`,
+      `https://anigram-application.herokuapp.com/accounts/login`,
       body,
       config
     );
@@ -100,7 +100,7 @@ export const logout = () => async (dispatch) => {
 
   try {
     const res = await axios.post(
-      `http://127.0.0.1:8000/accounts/logout`,
+      `https://anigram-application.herokuapp.com/accounts/logout`,
       body,
       config
     );
@@ -135,7 +135,7 @@ export const register =
 
     try {
       const res = await axios.post(
-        `http://127.0.0.1:8000/accounts/register`,
+        `https://anigram-application.herokuapp.com/accounts/register`,
         body,
         config
       );

@@ -26,14 +26,15 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 SECRET_KEY = 'django-insecure-zftmr&7#65*nic9r2o9!5&rinqf#(6&jjn9_348$(0xht!#ydm'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
 
 INSTALLED_APPS = [
+    "whitenoise.runserver_nostatic",
     'corsheaders',
     'accounts.apps.AccountsConfig',
     'user.apps.UserConfig',
@@ -51,14 +52,16 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
-    'corsheaders.middleware.CorsMiddleware',
+    
     'django.middleware.security.SecurityMiddleware',
+    "whitenoise.middleware.WhiteNoiseMiddleware",
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
 ]
 
 ROOT_URLCONF = 'anigram.urls'
@@ -136,10 +139,11 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 
+STATIC_ROOT = BASE_DIR / "staticfiles"
+
 
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'client/static/client'),
-    os.path.join(BASE_DIR, 'client'),
+    os.path.join(BASE_DIR, 'static'),
 ]
 
 # Default primary key field type
@@ -159,3 +163,7 @@ REST_FRAMEWORK = {
 }
 
 CORS_ORIGIN_ALLOW_ALL = True
+
+
+STATICFILES_STORAGE = "whitenoise.storage.CompressedStaticFilesStorage"
+
