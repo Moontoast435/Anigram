@@ -28,6 +28,7 @@ def createPost(request):
     data = request.data
     description = request.data['description']
     image_url = request.data['image_url']
+    username = request.data['username']
     post = Post.objects.create(description=description, image_url=image_url)
     serializer = PostSerializer(post, many=False)
     return Response(serializer.data)

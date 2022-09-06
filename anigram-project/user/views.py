@@ -4,6 +4,7 @@ from django.contrib.auth.models import User
 from .models import UserProfile
 from .serializers import UserProfileSerializer
 
+
 class GetUserProfileView(APIView):
     def get(self, request, format=None):
         try:
@@ -16,7 +17,7 @@ class GetUserProfileView(APIView):
             return Response({'profile' : user_profile.data, 'username': str(username)})
         except:
             return Response({'error': 'Something went wrong when retrieving profile'})
-            
+           
 class UpdateUserProfileView(APIView):
     def put(self, request, format=None):
         try:

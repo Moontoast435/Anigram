@@ -1,5 +1,6 @@
 import Cookies from "js-cookie";
 import axios from "axios";
+import {load_user} from './profile';
 import {
   REGISTER_SUCCESS,
   REGISTER_FAIL,
@@ -7,12 +8,51 @@ import {
   LOGIN_FAIL,
   LOGOUT_SUCCESS,
   LOGOUT_FAIL,
+  AUTHENTICATED_SUCCESS,
+  AUTHENTICATED_FAIL
 } from "./seanTypes";
+
+export const checkAuthenticated = () => async dispatch => {
+  const config = {
+      headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+      }
+  };
+
+  try {
+      const res = await axios.get(`https://anigram-application.herokuapp.com/accounts/authenticated`, config);
+      console.log(res);
+      if (res.data.error || res.data.isAuthenticated === 'error') {
+          dispatch({
+              type: AUTHENTICATED_FAIL,
+              payload: false
+          });
+      }
+      else if (res.data.isAuthenticated === 'success') {
+          dispatch({
+              type: AUTHENTICATED_SUCCESS,
+              payload: true
+          });
+      }
+      else {
+          dispatch({
+              type: AUTHENTICATED_FAIL,
+              payload: false
+          });
+      }
+  } catch(err) {
+      dispatch({
+          type: AUTHENTICATED_FAIL,
+          payload: false
+      });
+  }
+};
 
 export const login = (username, password) => async (dispatch) => {
   const config = {
     headers: {
-      Accept: "application/json",
+      'Accept': "application/json",
       "Content-Type": "application/json",
       "X-CSRFToken": Cookies.get("csrftoken"),
     },
@@ -22,18 +62,17 @@ export const login = (username, password) => async (dispatch) => {
 
   try {
     const res = await axios.post(
-      `http://127.0.0.1:8000/accounts/login`,
+      `https://anigram-application.herokuapp.com/accounts/login`,
       body,
       config
     );
 
     if (res.data.success) {
       dispatch({
-        type: LOGIN_SUCCESS,
-        payload: res.data.username,
+        type: LOGIN_SUCCESS
       });
 
-      // load the user
+      dispatch(load_user());
     } else {
       dispatch({
         type: LOGIN_FAIL,
@@ -49,19 +88,19 @@ export const login = (username, password) => async (dispatch) => {
 export const logout = () => async (dispatch) => {
   const config = {
     headers: {
-      Accept: "application/json",
+      'Accept': "application/json",
       "Content-Type": "application/json",
       "X-CSRFToken": Cookies.get("csrftoken"),
     },
   };
 
   const body = JSON.stringify({
-    withCredientials: true,
+    'withCredentials': true,
   });
 
   try {
     const res = await axios.post(
-      `http://127.0.0.1:8000/accounts/logout`,
+      `https://anigram-application.herokuapp.com/accounts/logout`,
       body,
       config
     );
@@ -69,6 +108,7 @@ export const logout = () => async (dispatch) => {
     if (res.data.success) {
       dispatch({
         type: LOGOUT_SUCCESS,
+        username: ''
       });
     } else {
       dispatch({
@@ -86,7 +126,7 @@ export const register =
   (username, password, re_password) => async (dispatch) => {
     const config = {
       headers: {
-        Accept: "application/json",
+        'Accept': "application/json",
         "Content-Type": "application/json",
         "X-CSRFToken": Cookies.get("csrftoken"),
       },
@@ -95,7 +135,7 @@ export const register =
 
     try {
       const res = await axios.post(
-        `http://127.0.0.1:8000/accounts/register`,
+        `https://anigram-application.herokuapp.com/accounts/register`,
         body,
         config
       );

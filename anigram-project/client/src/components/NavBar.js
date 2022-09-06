@@ -5,16 +5,15 @@ import { useSelector } from "react-redux";
 import { logout } from '../actions/auth';
 
 
-const Navbar = () => {
-    const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
-    console.log(isAuthenticated);
+const Navbar = ({isAuthenticated, logout}) => {
+  
     const authLinks = (
         <>
             <li className="nav-item">
                 <NavLink className="nav-link " aria-current="page" to="/dashboard">Dashboard</NavLink>
             </li>
             <li className="nav-item">
-                <a className="nav-link " aria-current="page" onClick={() => logout} href='/'>Logout</a>
+                <a className="nav-link " aria-current="page" onClick={() => logout()} href='/'>Logout</a>
             </li>
         </>
     );
@@ -55,9 +54,9 @@ const Navbar = () => {
     )
 }
 
-// const mapStateToProps = state => ({
-//     isAuthenticated : state.auth.isAuthenticated
-// });
+const mapStateToProps = state => ({
+    isAuthenticated : state.auth.isAuthenticated
+});
 
 
-export default (Navbar);
+export default connect(mapStateToProps, { logout })(Navbar);

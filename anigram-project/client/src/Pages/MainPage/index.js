@@ -13,7 +13,7 @@ const MainPage = () => {
 
   const searchHandle = async (e) => {
     let key = e.target.value;
-    let result = await fetch(`http://127.0.0.1:8000/search?search=${key}`);
+    let result = await fetch(`https://anigram-application.herokuapp.com/search?search=${key}`);
 
     result = await result.json();
     console.log(result);
@@ -24,7 +24,7 @@ const MainPage = () => {
     }
   };
   useEffect(() => {
-    fetch('http://127.0.0.1:8000/api/post')
+    fetch('https://anigram-application.herokuapp.com/api/post')
       .then((response) => response.json())
       .then((data) => setPosts(data));
   }, []);
@@ -34,6 +34,7 @@ const MainPage = () => {
       <div>
         <div className="posts-display-board" role="posts" key={i}>
           {/* <p>{post.title}</p> */}
+          
           <p>
             Image: <img src={post.image_url} />
           </p>
