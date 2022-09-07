@@ -7,6 +7,8 @@ class UserProfile(models.Model):
     last_name = models.CharField(max_length=255, default='')
     phone = models.CharField(max_length=20, default='')
     city = models.CharField(max_length=20, default='')
+    status = models.CharField(max_length=20, default='')
+    verified_breeder = models.CharField(max_length=10, default="No")
 
     def __str__(self):
         return self.first_name

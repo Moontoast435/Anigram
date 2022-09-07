@@ -12,9 +12,11 @@ const MainPage = () => {
     navigate('/create');
   }
 
+
+
   const username = useSelector((state) => state.profile.username);
   console.log(username);
-  console.log('hey there I am from main poage');
+  
 
   // const searchHandle = async (e) => {
   //   let key = e.target.value;
@@ -29,7 +31,9 @@ const MainPage = () => {
   //   }
   // };
   useEffect(() => {
+
     fetch('http://127.0.0.1:8000/posts/api/post')
+
       .then((response) => response.json())
       .then((data) => setPosts(data));
   }, []);
@@ -39,10 +43,12 @@ const MainPage = () => {
       <div>
         <div className="posts-display-board" role="posts" key={i}>
           {/* <p>{post.title}</p> */}
+
           Posted By: {post.username}
           <p>
             Image: <img src={post.image_url} />
           </p>
+
           <p>Description: {post.description}</p>
         </div>
       </div>
