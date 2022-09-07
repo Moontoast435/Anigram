@@ -17,7 +17,10 @@ const FeedPage = () => {
 
   // const searchHandle = async (e) => {
   //   let key = e.target.value;
-  //   let result = await fetch(`https://anigram-application.herokuapp.com/search?search=${key}`);
+  //   console.log(key);
+  //   let result = await fetch(
+  //     `http://127.0.0.1:8000/posts/api/post?search=${key}`
+  //   );
 
   //   result = await result.json();
   //   console.log(result);
@@ -54,7 +57,7 @@ const FeedPage = () => {
   return (
     <>
       <div className="posts-container" role="posts-display">
-        {/* <input type="" onChange={searchHandle} /> */}
+        {/* <input type="text" onChange={searchHandle} /> */}
         {postsDisplay}
         <button onClick={handleClick}>Make a post</button>
       </div>
