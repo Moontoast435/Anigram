@@ -35,11 +35,9 @@ def createPost(request):
 
 @api_view(['PUT'])
 def updatePost(request, pk):
-    breakpoint()
     data = request.data
     post = Post.objects.get(id=pk)
     serializer = PostSerializer(instance=post, data=data)
-
     if serializer.is_valid(raise_exception=True):
         serializer.save()
     return Response(serializer.data)
