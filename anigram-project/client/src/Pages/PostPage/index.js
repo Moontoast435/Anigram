@@ -91,7 +91,7 @@ const PostPage = () => {
           />
         </label>
       </form>
-      <button onClick={() => handleSubmit()}>Create</button>
+      <button onClick={handleSubmit}>Create</button>
     </div>
   );
 };
