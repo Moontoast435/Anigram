@@ -1,0 +1,51 @@
+@import url("https://fonts.googleapis.com/css2?family=Dancing+Script&family=Quicksand&display=swap");
+
+:root {
+  --feedgoldlight: #f5da81;
+  --feedgold: #ecc541;
+  --feedwhite: rgb(245, 245, 245);
+  --feedblack: rgb(39, 39, 39);
+}
+
+* {
+  box-sizing: border-box;
+  font-weight: lighter;
+}
+
+body {
+  background-color: var(--feedblack);
+}
+
+.feedContainer {
+  height: 100%;
+  width: 100%;
+  overflow: auto;
+  font-size: 1.5rem;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+}
+
+.feedWrapper {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+  flex-direction: column;
+  position: absolute;
+  top: 10%;
+  left: 0%;
+  right: 0%;
+  bottom: 8.5%;
+  padding: 100px 30px;
+  background-color: var(--feedwhite);
+  border-top: 5px solid var(--feedgold);
+  border-bottom: 5px solid var(--feedgold);
+  overflow: auto;
+}
+
+.feedWrapper img {
+  min-width: 100%;
+  max-height: 300px;
+}

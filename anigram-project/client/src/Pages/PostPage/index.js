@@ -2,9 +2,9 @@ import React from "react";
 import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-
 import Cookies from "js-cookie";
 import { useSelector } from "react-redux";
+import "./styles.css";
 
 const PostPage = () => {
   axios.defaults.withCredentials = true;
@@ -49,7 +49,7 @@ const PostPage = () => {
       },
       body: form_data,
     });
-    navigate("/main");
+    navigate("/feed");
   };
 
   // const handleSubmit = async (event) => {
@@ -73,25 +73,27 @@ const PostPage = () => {
   // };
 
   return (
-    <div>
-      <form>
-        <label>
-          Enter your name:
-          <input
-            type="text"
-            value={description}
-            name="description"
-            onChange={(e) => setDescription(e.target.value)}
-          />
-          <input
-            type="file"
-            onChange={(event) => {
-              setImageUrl(event.target.files[0]);
-            }}
-          />
-        </label>
-      </form>
-      <button onClick={handleSubmit}>Create</button>
+    <div className="postContainer">
+      <div className="postWrapper">
+        <form>
+          <label>
+            Enter your name:
+            <input
+              type="text"
+              value={description}
+              name="description"
+              onChange={(e) => setDescription(e.target.value)}
+            />
+            <input
+              type="file"
+              onChange={(event) => {
+                setImageUrl(event.target.files[0]);
+              }}
+            />
+          </label>
+        </form>
+        <button onClick={handleSubmit}>Create</button>
+      </div>
     </div>
   );
 };

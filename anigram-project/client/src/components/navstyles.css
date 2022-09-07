@@ -12,23 +12,22 @@
   font-weight: lighter;
 }
 
-body {
-  background-color: var(--loginblack);
-}
-
 .navContainer {
   display: flex;
   justify-content: center;
   align-items: center;
   min-height: 70px;
-  background-color: var(--navblack);
-  font-family: Dancing Script;
+  font-family: Quicksand;
+  min-width: 100%;
+  bottom: 0;
+  left: 0;
+  position: fixed;
 }
 
 .navWrapper {
-  width: 100%;
+  min-width: 100%;
   height: 70px;
-  background-color: white;
+  background-color: var(--navblack);
   position: relative;
   display: flex;
   justify-content: center;
@@ -37,16 +36,33 @@ body {
 }
 
 .navWrapper ul {
+  padding: 0px;
   display: flex;
   width: 100%;
+  user-select: none;
 }
 
 .navWrapper ul li {
-  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-direction: column;
   width: 100%;
   text-align: center;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.navWrapper ul li a .icon {
+  font-size: 1.5em;
+  text-align: center;
+  transition: 0.5s;
+  color: var(--navwhite);
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.navWrapper ul li:hover a .icon,
+.navWrapper ul li:active a .icon {
+  color: var(--navgold);
+  -webkit-tap-highlight-color: transparent;
 }

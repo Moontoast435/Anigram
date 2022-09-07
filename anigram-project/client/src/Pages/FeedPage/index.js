@@ -1,22 +1,21 @@
-import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import React from 'react';
-import { useSelector } from 'react-redux';
+import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import React from "react";
+import { useSelector } from "react-redux";
+import "./styles.css";
+import icon from "../../images/icon2.png";
 
 const FeedPage = () => {
   let navigate = useNavigate();
 
   const [posts, setPosts] = useState([]);
 
-  function handleClick() {
-    navigate("/create");
-  }
-
-
+  // function handleClick() {
+  //   navigate("/create");
+  // }
 
   const username = useSelector((state) => state.profile.username);
   console.log(username);
-  
 
   // const searchHandle = async (e) => {
   //   let key = e.target.value;
@@ -31,36 +30,37 @@ const FeedPage = () => {
   //   }
   // };
   useEffect(() => {
-
-    fetch('http://127.0.0.1:8000/posts/api/post')
-
+    fetch("http://127.0.0.1:8000/posts/api/post")
       .then((response) => response.json())
       .then((data) => setPosts(data));
   }, []);
 
   const postsDisplay = posts.map((post, i) => {
     return (
-      <div>
-        <div className="posts-display-board" role="posts" key={i}>
-          {/* <p>{post.title}</p> */}
-
-          Posted By: {post.username}
-          <p>
-            Image: <img src={post.image_url} />
-          </p>
-
-          <p>Description: {post.description}</p>
-        </div>
+      <div className="feedPost" role="posts" key={i}>
+        {/* <p>{post.title}</p> */}
+        <p>
+          <img src={post.image_url} />
+        </p>
+        {post.username}
+        <p>{post.description}</p>
       </div>
     );
   });
 
   return (
     <>
-      <div className="posts-container" role="posts-display">
-        {/* <input type="" onChange={searchHandle} /> */}
-        {postsDisplay}
-        <button onClick={handleClick}>Make a post</button>
+      <div className="feedContainer" role="posts-display">
+        <div className="feedHeader">
+          <img src={icon} alt="anigram icon" />
+        </div>
+        <h1>anigram</h1>
+        <div className="feedWrapper">
+          {/* <input type="" onChange={searchHandle} /> */}
+
+          {postsDisplay}
+          {/* <button onClick={handleClick}>Make a post</button> */}
+        </div>
       </div>
     </>
   );
