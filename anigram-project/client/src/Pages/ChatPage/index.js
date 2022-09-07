@@ -16,6 +16,7 @@ const ChatPage = () => {
     const [createNew, setCreateNew] = useState(null)
     const [newUsername, setNewUsername] = useState(null)
     const endpoint = "ws://127.0.0.1:8000/ws/ac/"
+    const [errorMessage, setErrorMessage] = useState(null)
     useEffect(() => {
         try{
         let newSocket = new WebSocket("ws://127.0.0.1:8000/ws/ac/");
@@ -92,7 +93,7 @@ const ChatPage = () => {
 
     const handleNewUsername = (e) => {
         e.preventDefault()
-        //setCreateNew(true)
+        socket.send(JSON.stringify({"type": "verify", "username" : "newUsername"}))
     }
 
     return (
@@ -119,7 +120,8 @@ const ChatPage = () => {
             {createNew ?
             <>
              <form>
-                <input type="text" value={newUsername} onChange={handleNewUsername} />
+                <label for='new-user' hidden={errorMessage ? false : true}> {errorMessage} </label>
+                <input name='new-user' type="text" value={newUsername} onChange={handleNewUsername} />
                 <input type="submit" value="submit" />
              </form>
             </> :
