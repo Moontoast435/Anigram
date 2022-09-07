@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import React from 'react';
 import { useSelector } from 'react-redux';
+import SearchPage from '../SearchPage';
 
 const FeedPage = () => {
   let navigate = useNavigate();
@@ -15,21 +16,6 @@ const FeedPage = () => {
   const username = useSelector((state) => state.profile.username);
   console.log(username);
 
-  // const searchHandle = async (e) => {
-  //   let key = e.target.value;
-  //   console.log(key);
-  //   let result = await fetch(
-  //     `http://127.0.0.1:8000/posts/api/post?search=${key}`
-  //   );
-
-  //   result = await result.json();
-  //   console.log(result);
-
-  //   if (result) {
-  //     console.log(result);
-  //     // setPosts(result);
-  //   }
-  // };
   useEffect(() => {
     fetch('http://127.0.0.1:8000/posts/api/post')
       .then((response) => response.json())
@@ -57,7 +43,7 @@ const FeedPage = () => {
   return (
     <>
       <div className="posts-container" role="posts-display">
-        {/* <input type="text" onChange={searchHandle} /> */}
+        <SearchPage />
         {postsDisplay}
         <button onClick={handleClick}>Make a post</button>
       </div>
