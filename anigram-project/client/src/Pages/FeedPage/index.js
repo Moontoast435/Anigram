@@ -3,13 +3,13 @@ import { useNavigate } from 'react-router-dom';
 import React from 'react';
 import { useSelector } from 'react-redux';
 
-const MainPage = () => {
+const FeedPage = () => {
   let navigate = useNavigate();
 
   const [posts, setPosts] = useState([]);
 
   function handleClick() {
-    navigate('/create');
+    navigate("/create");
   }
 
 
@@ -66,4 +66,4 @@ const MainPage = () => {
   );
 };
 
-export default MainPage;
+export default FeedPage;

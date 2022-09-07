@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import Cookies from 'js-cookie';
 import { useSelector } from 'react-redux';
 
-const CreatePost = () => {
+const PostPage = () => {
   axios.defaults.withCredentials = true;
   let navigate = useNavigate();
   const [description, setDescription] = useState('');
@@ -91,12 +91,18 @@ const CreatePost = () => {
               setImageUrl(event.target.files[0]);
             }}
           />
+<<<<<<< HEAD
 
         </label>
       </form>
       <button onClick={handleSubmit}>Create</button>
+=======
+        </label>
+      </form>
+      <button onClick={() => handleSubmit()}>Create</button>
+>>>>>>> dev-karolina
     </div>
   );
 };
 
-export default CreatePost;
+export default PostPage;

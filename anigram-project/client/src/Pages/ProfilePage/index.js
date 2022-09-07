@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { update_profile } from '../../actions/profile';
 
-const Dashboard = ({
+const ProfilePage = ({
     update_profile,
     first_name_global,
     last_name_global,
@@ -52,5 +52,5 @@ const mapStateToProps = state => ({
     city_global: state.profile.city,
    
 })
-export default connect(mapStateToProps, { update_profile })(Dashboard);
+export default connect(mapStateToProps, { update_profile })(ProfilePage);
 
