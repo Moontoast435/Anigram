@@ -91,16 +91,10 @@ const PostPage = () => {
               setImageUrl(event.target.files[0]);
             }}
           />
-<<<<<<< HEAD
 
         </label>
       </form>
       <button onClick={handleSubmit}>Create</button>
-=======
-        </label>
-      </form>
-      <button onClick={() => handleSubmit()}>Create</button>
->>>>>>> dev-karolina
     </div>
   );
 };
