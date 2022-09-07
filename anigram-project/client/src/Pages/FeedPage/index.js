@@ -13,9 +13,9 @@ const MainPage = () => {
   }
 
 
-  const username = useSelector((state) => state.auth.username);
+  const username = useSelector((state) => state.profile.username);
   console.log(username);
-  console.log('hey there');
+  
 
 
   // const searchHandle = async (e) => {
@@ -32,7 +32,7 @@ const MainPage = () => {
   // };
   useEffect(() => {
 
-    fetch('http://127.0.0.1:8000/api/post')
+    fetch('http://127.0.0.1:8000/posts/api/post')
 
       .then((response) => response.json())
       .then((data) => setPosts(data));
@@ -47,6 +47,7 @@ const MainPage = () => {
           <p>
             Image: <img src={post.image_url} />
           </p>
+          <p>Posted By: {post.username}</p>
           <p>Description: {post.description}</p>
         </div>
       </div>
@@ -57,7 +58,6 @@ const MainPage = () => {
     <>
       <div className="posts-container" role="posts-display">
         {/* <input type="" onChange={searchHandle} /> */}
-        Posted By: {username}
         {postsDisplay}
         <button onClick={handleClick}>Make a post</button>
       </div>

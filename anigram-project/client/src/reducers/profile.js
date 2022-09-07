@@ -1,6 +1,8 @@
 import {
     LOAD_USER_PROFILE_SUCCESS,
-    LOAD_USER_PROFILE_FAIL
+    LOAD_USER_PROFILE_FAIL,
+    UPDATE_USER_PROFILE_SUCCESS,
+    UPDATE_USER_PROFILE_FAIL
   
   } from '../actions/seanTypes';
   
@@ -9,7 +11,9 @@ import {
     first_name: '',
     last_name: '',
     phone: '',
-    city: ''
+    city: '',
+    status: '',
+    verified_breeder: 'No'
   };
   
   export default function(state = initialState, action) {
@@ -17,6 +21,7 @@ import {
   
     switch(type) {
         case LOAD_USER_PROFILE_SUCCESS:
+        case UPDATE_USER_PROFILE_SUCCESS:
             return {
                 ...state,
                 username: payload.username,
@@ -24,6 +29,7 @@ import {
                 last_name: payload.profile.last_name,
                 phone: payload.profile.phone,
                 city: payload.profile.city,
+                status: payload.profile.status,
             }
         case LOAD_USER_PROFILE_FAIL:
             return {
@@ -33,6 +39,11 @@ import {
                 last_name: '',
                 phone: '',
                 city: '',
+                status: '',
+            }
+        case UPDATE_USER_PROFILE_FAIL:
+            return {
+                ...state
             }
         default:
             return state

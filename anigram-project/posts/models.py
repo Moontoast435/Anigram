@@ -19,6 +19,7 @@ class Post(models.Model):
     # created = models.DateTimeField(auto_now_add=True)
     # auto_now_add is updated only when a record is created
     image_url = models.ImageField(upload_to='')
+    username = models.CharField(max_length=50, null=True)
     
     def __str__(self):
         return self.description
