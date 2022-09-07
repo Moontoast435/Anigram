@@ -1,14 +1,14 @@
-import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import React from 'react';
+import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import React from "react";
 
-const MainPage = () => {
+const FeedPage = () => {
   let navigate = useNavigate();
 
   const [posts, setPosts] = useState([]);
 
   function handleClick() {
-    navigate('/create');
+    navigate("/create");
   }
 
   const searchHandle = async (e) => {
@@ -24,7 +24,7 @@ const MainPage = () => {
     }
   };
   useEffect(() => {
-    fetch('http://127.0.0.1:8000/api/post')
+    fetch("http://127.0.0.1:8000/api/post")
       .then((response) => response.json())
       .then((data) => setPosts(data));
   }, []);
@@ -55,4 +55,4 @@ const MainPage = () => {
   );
 };
 
-export default MainPage;
+export default FeedPage;
