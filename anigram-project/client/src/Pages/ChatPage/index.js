@@ -8,12 +8,6 @@ const ChatPage = () => {
   const username = useSelector((state) => state.profile.username);
   console.log('username is', username);
 
-  const [socket, setSocket] = useState(null);
-  const [chatList, setChatList] = useState(null);
-  const [chatLog, setChatLog] = useState();
-  const [target, setTarget] = useState(null);
-  const chatUsers = useRef(null);
-
     const [socket, setSocket] = useState(null)
     const [chatList, setChatList] = useState(null)
     const [chatLog, setChatLog] = useState()
@@ -56,6 +50,7 @@ const ChatPage = () => {
         console.log(data)
         return data
     }
+
     function handleResponse(data){
         console.log("and the data is...", data)
         try{
@@ -77,41 +72,7 @@ const ChatPage = () => {
             console.log("Error handling response")
         }
     }
-  }, []);
 
-  const orderMessages = (data) => {
-    console.log(data);
-    data = data.map((chat) => {
-      return {
-        ...chat,
-        date: new Date(chat.date),
-      };
-    });
-    data.sort((a, b) => (a.date > b.date ? 1 : -1));
-    console.log(data);
-    return data;
-  };
-  function handleResponse(data) {
-    console.log('and the data is...', data);
-    try {
-      switch (data.type) {
-        case 'set_list':
-          setChatList(data.data);
-          break;
-        case 'set_log':
-          console.log(data.data);
-          let orderedMessages = orderMessages(data.data);
-          setChatLog(orderedMessages);
-          console.log(chatLog);
-          chatUsers.current.style.display = 'none';
-          break;
-        default:
-          break;
-      }
-    } catch (error) {
-      console.log('Error handling response');
-    }
-  }
 
   let data2 = { message: 'woo', type: 'online' };
 
