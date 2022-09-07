@@ -18,7 +18,7 @@ const Conversation = ({chatlog, username, target, sendMsg}) => {
     }
 
     return (
-        <div className="chatlog">
+        <div className="chatlog" role="chatLog">
             <h2>Conversation with {target}</h2>
             {chatlog.map(chat => <>
                     <div className={`chat-single ${username == chat.sender ? "from-user" : "from-target"}`}>

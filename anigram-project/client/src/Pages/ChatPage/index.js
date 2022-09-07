@@ -5,9 +5,7 @@ import Conversation from '../../components/conversation';
 import './style.css'
 
 const ChatPage = () => {
-//   const username = useSelector((state) => state.profile.username);
-const username = "mattr"
-
+    const username = useSelector((state) => state.profile.username);
     const [socket, setSocket] = useState(null)
     const [chatList, setChatList] = useState(null)
     const [chatLog, setChatLog] = useState()
@@ -21,6 +19,7 @@ const username = "mattr"
         try{
         let newSocket = new WebSocket("ws://127.0.0.1:8000/ws/ac/");
         newSocket.onmessage = (data) => {
+            console.log(data)
             let response = JSON.parse(data.data)
             handleResponse(response)
         }    
@@ -34,8 +33,6 @@ const username = "mattr"
         }   
 
     }, []);
-
-    
 
     const orderMessages = (data) => {
         data = data.map(chat => {
@@ -64,10 +61,6 @@ const username = "mattr"
                     setErrorMessage(data.data)
                     setTarget(null)
                     break;
-                case "verify_success":
-                    setCreateNew(false)
-                    getChatLog(data.data)
-                    break
                 default:
                     break;
             }
@@ -79,8 +72,6 @@ const username = "mattr"
     const createChat = () => {
         setCreateNew(true)
     }
-
-    
 
     const sendMessage = (message, target) => {
         const newMessage = {
@@ -126,7 +117,7 @@ const username = "mattr"
         </div> */}
             
         {chatList ? 
-        <div className='chat-list' ref={chatUsers}>
+        <div className='chat-list' ref={chatUsers} role='chatList'>
             <div className='chat-menu'>
                 <h2>Select a chat</h2>
                 <button onClick={createChat}>Start new chat</button>
