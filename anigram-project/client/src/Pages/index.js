@@ -1,4 +1,4 @@
-export { default as EditPost } from './EditPost';
+// export { default as EditPost } from './EditPost';
 export { default as NotFoundPage } from "./NotFoundPage";
 export { default as LandingPage } from "./LandingPage";
 export { default as Login } from "./LoginPage";
