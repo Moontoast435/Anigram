@@ -7,8 +7,8 @@ class UserProfile(models.Model):
     last_name = models.CharField(max_length=255, default='')
     phone = models.CharField(max_length=20, default='')
     city = models.CharField(max_length=20, default='')
-    status = models.CharField(max_length=50, default=''),
-    adoptable = models.BooleanField(initial=False),
+    status = models.CharField(max_length=50, default='')
+    adoptable = models.BooleanField(default=False)
     credentials = models.CharField(max_length=500, default='')
 
     def __str__(self):

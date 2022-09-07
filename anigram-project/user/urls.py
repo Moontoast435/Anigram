@@ -4,6 +4,6 @@ from django.views.decorators.csrf import csrf_exempt
 
 urlpatterns = [
     path('user', GetUserProfileView.as_view()),
-    path('update',(UpdateUserProfileView.as_view())),
+    path('update', UpdateUserProfileView.as_view()),
     # path('show/<str:pk>', views.getPost, name='post')
 ]
