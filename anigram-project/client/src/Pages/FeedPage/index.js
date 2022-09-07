@@ -1,9 +1,18 @@
+<<<<<<< HEAD
 import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import React from "react";
 import { useSelector } from "react-redux";
 import "./styles.css";
 import { BiDotsHorizontalRounded } from "react-icons/bi";
+=======
+import { useState, useEffect } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import React from 'react';
+import { useSelector } from 'react-redux';
+import SearchPage from '../SearchPage';
+import Cookies from 'js-cookie';
+>>>>>>> 97901968a69d35bf7eddd99f45894847ca62f6ea
 
 const FeedPage = () => {
   let navigate = useNavigate();
@@ -17,27 +26,28 @@ const FeedPage = () => {
   const username = useSelector((state) => state.profile.username);
   console.log(username);
 
-  // const searchHandle = async (e) => {
-  //   let key = e.target.value;
-  //   console.log(key);
-  //   let result = await fetch(
-  //     `http://127.0.0.1:8000/posts/api/post?search=${key}`
-  //   );
-
-  //   result = await result.json();
-  //   console.log(result);
-
-  //   if (result) {
-  //     console.log(result);
-  //     // setPosts(result);
-  //   }
-  // };
   useEffect(() => {
-    fetch("http://127.0.0.1:8000/posts/api/post")
-      .then((response) => response.json())
-      .then((data) => setPosts(data));
+    getPosts();
   }, []);
 
+  const getPosts = () => {
+    fetch('http://127.0.0.1:8000/posts/api/post')
+      .then((response) => response.json())
+      .then((data) => setPosts(data));
+  };
+  const deletePost = (id) => {
+    fetch(`http://127.0.0.1:8000/posts/api/post/${id}/delete`, {
+      method: 'DELETE',
+      headers: {
+        'X-CSRFToken': Cookies.get('csrftoken'),
+      },
+    }).then((result) => {
+      result.json().then((resp) => {
+        console.log(resp);
+        getPosts();
+      });
+    });
+  };
   const postsDisplay = posts.map((post, i) => {
     return (
       <div>
@@ -52,6 +62,9 @@ const FeedPage = () => {
                   </span>
                 </Link>
               ) : null}
+             {post.username == username ? (
+               <button onClick={() => deletePost(post.id)}>Delete Post</button>
+               ) : null}
             </div>
             <img src={post.image_url} />
             <div className="feedDesc">

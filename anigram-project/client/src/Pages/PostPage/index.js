@@ -40,6 +40,14 @@ const PostPage = () => {
     form_data.append("image_url", image_url);
     form_data.append("username", username);
 
+    let desc = document.forms["Form"]["description"].value;
+    let image = document.getElementById("img").value;
+
+    if ((desc == null || desc == "", image == null || image == "")) {
+      alert("Please Fill All Required Field");
+      return false;
+    }
+
     console.log(username);
     console.log(form_data);
     await fetch(`http://127.0.0.1:8000/posts/api/post/create`, {
