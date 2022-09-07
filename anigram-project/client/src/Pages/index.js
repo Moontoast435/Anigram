@@ -5,5 +5,5 @@ export { default as Login } from "./LoginPage";
 export { default as Register } from "./RegisterPage";
 export { default as ProfilePage } from "./ProfilePage";
 export { default as FeedPage } from "./FeedPage";
-export { default as CreatePost } from "./CreatePost";
+export { default as PostPage } from "./PostPage";
 export { default as ChatPage } from "./ChatPage";
