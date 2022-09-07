@@ -105,7 +105,7 @@ export const logout = () => async (dispatch) => {
       body,
       config
     );
-
+   console.log(res);
     if (res.data.success) {
       dispatch({
         type: LOGOUT_SUCCESS,
