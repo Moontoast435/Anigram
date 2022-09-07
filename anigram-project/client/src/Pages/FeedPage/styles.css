@@ -25,6 +25,7 @@ body {
   align-items: center;
   text-align: center;
   justify-content: center;
+  font-family: Quicksand;
 }
 
 .feedWrapper {
@@ -34,18 +35,71 @@ body {
   justify-content: center;
   flex-direction: column;
   position: absolute;
-  top: 10%;
+  top: 11%;
   left: 0%;
   right: 0%;
   bottom: 8.5%;
-  padding: 100px 30px;
-  background-color: var(--feedwhite);
-  border-top: 5px solid var(--feedgold);
-  border-bottom: 5px solid var(--feedgold);
-  overflow: auto;
+  background-color: var(--feedblack);
+  overflow-x: hidden;
+  height: fit-content;
+}
+
+.feedWrapper .feedPost {
+  border-top: 1px solid rgb(70, 70, 70);
+  margin-bottom: 20px;
+}
+
+.feedPost p {
+  margin: 10px;
+  padding: 0;
+  color: var(--feedgold);
+  text-align: start;
+  overflow-x: hidden;
+}
+
+.feedPost {
+  min-width: 390px;
+  max-width: 390px;
+  min-height: auto;
+  max-height: auto;
+  overflow-x: hidden;
 }
 
 .feedWrapper img {
-  min-width: 100%;
-  max-height: 300px;
+  min-width: 390px;
+  max-width: 390px;
+  min-height: auto;
+  max-height: auto;
+  border-top: 1px solid rgb(70, 70, 70);
+  border-bottom: 1px solid rgb(70, 70, 70);
+}
+
+.feedUser {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.feedDesc p {
+  color: var(--feedwhite) !important;
+  font-size: 1rem !important;
+}
+
+.feedUser a .icon {
+  font-size: 1.5em;
+  text-align: center;
+  transition: 0.5s;
+  color: var(--navwhite);
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  margin: 10px;
+  display: flex;
+  align-items: center;
+}
+
+.feedUser:hover a .icon,
+.feedUser:active a .icon {
+  color: var(--navgold);
+  -webkit-tap-highlight-color: transparent;
 }

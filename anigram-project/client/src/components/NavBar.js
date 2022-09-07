@@ -11,8 +11,9 @@ import {
 import { BsChatDots, BsList } from "react-icons/bs";
 import { CgProfile } from "react-icons/cg";
 import "./navstyles.css";
+import icon from "../images/icon2.png";
 
-const NavBar = (isAuthenticated, logout) => {
+const NavBar = ({ isAuthenticated, logout }) => {
   const authLinks = (
     <>
       <li className="list">
@@ -67,11 +68,17 @@ const NavBar = (isAuthenticated, logout) => {
 
   return (
     <>
+      <div className="navHeader">
+        <div className="navHeaderWrap">
+          <img src={icon} alt="anigram icon" />
+          <h1>anigram</h1>
+        </div>
+      </div>
       <div>
         <Outlet />
       </div>
-      <div className="navContainer">
-        <div className="navWrapper">
+      <div className="navFooter">
+        <div className="navFooterWrap">
           <ul>
             <li className="list">
               <NavLink aria-current="page" exact="true" to="/feed">

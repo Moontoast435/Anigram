@@ -12,7 +12,43 @@
   font-weight: lighter;
 }
 
-.navContainer {
+.navHeader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-height: 90px;
+  font-family: Quicksand;
+  min-width: 100%;
+  top: 0;
+  left: 0;
+  position: fixed;
+  border-bottom: 5px solid var(--feedgold);
+}
+
+.navHeaderWrap {
+  min-width: 100%;
+  height: 85px;
+  background-color: var(--navblack);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.navHeaderWrap img {
+  width: 30px;
+  height: 30px;
+  margin-top: 10px;
+}
+
+.navHeaderWrap h1 {
+  color: var(--navgold);
+  margin-top: 0;
+  margin-bottom: 10px;
+  font-family: Dancing Script;
+}
+
+.navFooter {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -22,9 +58,10 @@
   bottom: 0;
   left: 0;
   position: fixed;
+  border-top: 5px solid var(--feedgold);
 }
 
-.navWrapper {
+.navFooterWrap {
   min-width: 100%;
   height: 70px;
   background-color: var(--navblack);
@@ -32,17 +69,16 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  border-radius: 10px;
 }
 
-.navWrapper ul {
+.navFooterWrap ul {
   padding: 0px;
   display: flex;
   width: 100%;
   user-select: none;
 }
 
-.navWrapper ul li {
+.navFooterWrap ul li {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -52,7 +88,7 @@
   -webkit-tap-highlight-color: transparent;
 }
 
-.navWrapper ul li a .icon {
+.navFooterWrap ul li a .icon {
   font-size: 1.5em;
   text-align: center;
   transition: 0.5s;
@@ -61,8 +97,8 @@
   -webkit-tap-highlight-color: transparent;
 }
 
-.navWrapper ul li:hover a .icon,
-.navWrapper ul li:active a .icon {
+.navFooterWrap ul li:hover a .icon,
+.navFooterWrap ul li:active a .icon {
   color: var(--navgold);
   -webkit-tap-highlight-color: transparent;
 }

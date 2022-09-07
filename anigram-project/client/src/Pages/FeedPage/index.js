@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import React from "react";
 import { useSelector } from "react-redux";
 import "./styles.css";
-import icon from "../../images/icon2.png";
+import { BiDotsHorizontalRounded } from "react-icons/bi";
 
 const FeedPage = () => {
   let navigate = useNavigate();
@@ -41,16 +41,24 @@ const FeedPage = () => {
   const postsDisplay = posts.map((post, i) => {
     return (
       <div>
-        <div className="posts-display-board" role="posts" key={i}>
-          {/* <p>{post.title}</p> */}
-          {post.username == username ? (
-            <Link to={`/edit/post/${post.id}`}>Edit</Link>
-          ) : null}
-          Posted By: {post.username}
-          <p>
-            Image: <img src={post.image_url} />
-          </p>
-          <p>Description: {post.description}</p>
+        <div role="posts" key={i}>
+          <div className="feedPost">
+            <div className="feedUser">
+              <p>{post.username}</p>
+              {post.username == username ? (
+                <Link to={`/edit/post/${post.id}`}>
+                  <span className="icon">
+                    <BiDotsHorizontalRounded />
+                  </span>
+                </Link>
+              ) : null}
+            </div>
+            <img src={post.image_url} />
+            <div className="feedDesc">
+              <p>{post.username}</p>
+              <p>{post.description}</p>
+            </div>
+          </div>
         </div>
       </div>
     );
@@ -59,16 +67,7 @@ const FeedPage = () => {
   return (
     <>
       <div className="feedContainer" role="posts-display">
-        <div className="feedHeader">
-          <img src={icon} alt="anigram icon" />
-        </div>
-        <h1>anigram</h1>
-        <div className="feedWrapper">
-          {/* <input type="" onChange={searchHandle} /> */}
-
-          {postsDisplay}
-          {/* <button onClick={handleClick}>Make a post</button> */}
-        </div>
+        <div className="feedWrapper">{postsDisplay}</div>
       </div>
     </>
   );
