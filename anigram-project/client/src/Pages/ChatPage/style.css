@@ -58,15 +58,34 @@ div.chat-page{
     align-items: center;
 }
 
+div.chat-option{
+    width: 100%;
+}
+
 div.chat-option p{
     font-size: 1.5rem;
     margin: 1rem;
+    margin-left: 0;
+    text-align: center;
 }
 
 .go-back-btn{
     align-self: flex-start;
     margin-left: 2rem;
 }
+
+div.chat-menu{
+    display: flex;
+    justify-content: center;
+    width: 80vw;
+}
+
+div.chat-menu > *{
+    text-align: center;
+    margin-left: 1rem;
+    margin-right: 1rem;
+}
+
 
 
 

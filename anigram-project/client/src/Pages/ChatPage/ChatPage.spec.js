@@ -9,12 +9,14 @@ import userEvent from '@testing-library/user-event';
 import 'core-js'
 const { createServer } = require("http");
 import {default as ChatPage} from './index'
-
+import WS from "jest-websocket-mock"
 
 
 describe('Testing the quizroom page', () => {
+
     // let io, serverSocket, clientSocket, clientEndpoint;
     const testfunc = jest.fn()
+    let ws
 
     // beforeAll((done) => {
     //     const httpServer = createServer();
@@ -42,21 +44,36 @@ describe('Testing the quizroom page', () => {
     //     clientSocket.close();
     //   });
 
+    beforeEach(() => {
+        ws = new WS("ws://127.0.0.1:8000/ws/ac/")
+    });
+    afterEach(() => {
+        WS.clean()
+      });
+
     it('the div for the page is rendered at the start', ()=>{
         let initState = {};
         renderWithReduxProvider(<ChatPage />, { initState });
         let chatPageDiv = screen.getByRole('chatPage')
         expect(chatPageDiv).toBeInTheDocument()
     })
-
-    it('should have access to the test username set up in the test environment', ()=>{
-        let initState = {auth: {isAuthenticated: true, username: "mattr"}};
+    it('can connect to the websocket server', async () => {
+        let initState = {auth: {isAuthenticated: true}, profile: { username: "mattr"}};
         renderWithReduxProvider(<ChatPage />, { initState });
-        let headerName = screen.getByRole('h1-user')
-        expect(headerName).toBeInTheDocument()
-        expect(headerName.textContent).toEqual('mattr')
-
+        await ws.connected
+        
+        await expect(ws).toReceiveMessage(JSON.stringify({"type": "online", "username": "mattr"}));
     })
+
+
+
+    // it('should have access to the test username set up in the test environment', ()=>{
+    //     let initState = {auth: {isAuthenticated: true, username: "mattr"}};
+    //     renderWithReduxProvider(<ChatPage />, { initState });
+    //     let headerName = screen.getByRole('h1-user')
+    //     expect(headerName).toBeInTheDocument()
+    //     expect(headerName.textContent).toEqual('mattr')
+    // })
 
     
 
