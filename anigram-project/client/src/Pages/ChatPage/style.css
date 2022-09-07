@@ -1,10 +1,10 @@
 @import url("https://fonts.googleapis.com/css2?family=Dancing+Script&family=Quicksand&display=swap");
 
 :root {
-  --homegoldlight: #f5da81;
-  --homegold: #ecc541;
-  --homewhite: rgb(245, 245, 245);
-  --homeblack: rgb(39, 39, 39);
+  --chatgoldlight: #f5da81;
+  --chatgold: #ecc541;
+  --chatwhite: rgb(245, 245, 245);
+  --chatblack: rgb(39, 39, 39);
 }
 
 * {
@@ -16,43 +16,117 @@ body {
   background-color: var(--homeblack);
 }
 
-.homeContainer {
+.chatContainer {
   height: 100%;
   width: 100%;
-  text-transform: uppercase;
   overflow: auto;
-  font-size: 1.5rem;
   display: flex;
   align-items: center;
   text-align: center;
   justify-content: center;
+  font-family: Quicksand;
 }
 
-.homeWrapper {
+.chatWrapper {
   display: flex;
   align-items: center;
   text-align: center;
   justify-content: center;
   flex-direction: column;
   position: absolute;
-  top: 14.5%;
-  left: 5%;
-  right: 5%;
-  padding: 100px 30px;
-  background-color: var(--homewhite);
-  border-radius: 20px;
-  border: 5px solid var(--homegold);
+  top: 11%;
+  left: 0%;
+  right: 0%;
+  bottom: 8.5%;
+  background-color: var(--feedblack);
+  overflow-x: hidden;
+  height: fit-content;
+  padding-bottom: 90px;
 }
 
-div.chatlog {
+.chatWrapper button {
+  height: fit-content;
+  width: auto;
+  border: none;
+  outline: none;
+  background-color: transparent;
+}
+
+.chatWrapper .icon {
+  font-size: 20px !important;
+  text-align: center;
+  color: var(--navwhite);
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  margin: 3px;
+}
+
+.chat-menu {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 100%;
+  font-size: 11px !important;
+  color: var(--chatwhite);
+  text-transform: uppercase;
+  font-family: Quicksand;
+  border-bottom: 1px solid rgb(70, 70, 70);
+}
+
+.chatWrapper form {
+  font-family: Quicksand;
+  background-color: transparent;
+  padding-top: 10px;
+  font-size: 1.2rem;
+}
+
+.chatWrapper form input {
+  font-family: Quicksand;
+  background-color: rgb(54, 54, 54);
+  color: var(--chatwhite);
+  font-size: 13px !important;
+  margin: 5px 5px;
+  border: 1px solid transparent;
+  border-radius: 7px;
+  padding: 5px 15px;
+  text-transform: uppercase;
+}
+
+.chatWrapper form input:focus {
+  outline: none;
+  border: 1px solid rgb(70, 70, 70);
+}
+
+.chatList {
+  width: 100%;
+  height: 100%;
+  color: var(--chatwhite);
+  display: flex;
+  justify-content: start !important;
+  flex-direction: column;
+}
+
+.chatList p {
+  text-align: start !important;
+  border-bottom: 1px solid rgb(70, 70, 70);
+  margin: 0px !important;
+  padding: 5px;
+  font-size: 20px !important;
+}
+
+.chatlog {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  width: 100%;
 }
 
-div.chatlog h2 {
-  margin-bottom: 1rem;
+.chatlog h2 {
+  font-family: Quicksand;
+  text-transform: uppercase;
+  color: var(--chatwhite);
+  font-size: 15px;
 }
 
 div.chat-single {
@@ -65,9 +139,10 @@ div.chat-single {
 div.chat-single p {
   min-width: 30%;
   max-width: 70%;
-  border: 1px solid grey;
-  border-radius: 1rem;
+  border: 1px solid rgb(70, 70, 70);
+  border-radius: 10px;
   text-align: center;
+  color: var(--chatwhite);
 }
 
 div.from-user {
@@ -75,8 +150,9 @@ div.from-user {
 }
 
 div.from-user p {
-  background-color: #e2b2ff;
+  background-color: rgb(54, 54, 54);
   padding: 0 1rem 0 1rem;
+  color: var(--chatwhite);
 }
 
 div.from-target {
@@ -84,7 +160,7 @@ div.from-target {
 }
 
 div.from-target p {
-  background-color: #faf2b5;
+  background-color: rgb(54, 54, 54);
   padding: 0 1rem 0 1rem;
 }
 
@@ -93,13 +169,6 @@ div.chat-list {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-}
-
-div.chat-page {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
 }
 
 div.chat-option {
@@ -116,16 +185,4 @@ div.chat-option p {
 .go-back-btn {
   align-self: flex-start;
   margin-left: 2rem;
-}
-
-div.chat-menu {
-  display: flex;
-  justify-content: center;
-  width: 80vw;
-}
-
-div.chat-menu > * {
-  text-align: center;
-  margin-left: 1rem;
-  margin-right: 1rem;
 }

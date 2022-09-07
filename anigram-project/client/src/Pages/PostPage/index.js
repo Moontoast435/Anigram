@@ -83,20 +83,23 @@ const PostPage = () => {
   return (
     <div className="postContainer">
       <div className="postWrapper">
-        <form>
+        <form name="Form">
           <label>
-            Enter your name:
-            <input
-              type="text"
-              value={description}
-              name="description"
-              onChange={(e) => setDescription(e.target.value)}
-            />
             <input
               type="file"
+              id="img"
+              required
               onChange={(event) => {
                 setImageUrl(event.target.files[0]);
               }}
+            />
+            description
+            <input
+              type="text"
+              required
+              value={description}
+              name="description"
+              onChange={(e) => setDescription(e.target.value)}
             />
           </label>
         </form>

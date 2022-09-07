@@ -6,6 +6,7 @@ import SearchPage from "../SearchPage";
 import Cookies from "js-cookie";
 import "./styles.css";
 import { BiDotsHorizontalRounded } from "react-icons/bi";
+import { TiDeleteOutline } from "react-icons/ti";
 
 const FeedPage = () => {
   let navigate = useNavigate();
@@ -49,19 +50,25 @@ const FeedPage = () => {
             <div className="feedUser">
               <p>{post.username}</p>
               {post.username == username ? (
-                <Link to={`/edit/post/${post.id}`}>
+                <button onClick={() => deletePost(post.id)}>
                   <span className="icon">
-                    <BiDotsHorizontalRounded />
+                    <TiDeleteOutline />
                   </span>
-                </Link>
-              ) : null}
-              {post.username == username ? (
-                <button onClick={() => deletePost(post.id)}>Delete Post</button>
+                </button>
               ) : null}
             </div>
             <img src={post.image_url} />
             <div className="feedDesc">
-              <p>{post.username}</p>
+              <div className="feedUser2">
+                <p>{post.username}</p>
+                {post.username == username ? (
+                  <Link to={`/edit/post/${post.id}`}>
+                    <span className="icon">
+                      <BiDotsHorizontalRounded />
+                    </span>
+                  </Link>
+                ) : null}
+              </div>
               <p>{post.description}</p>
             </div>
           </div>
