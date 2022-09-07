@@ -4,6 +4,7 @@ import json
 from channels.consumer import AsyncConsumer, SyncConsumer
 from channels.exceptions import StopConsumer
 from .models import Clients, Chats
+from django.contrib.auth.models import User
 from asgiref.sync import async_to_sync, sync_to_async
 from channels.layers import get_channel_layer
 import datetime
@@ -72,6 +73,28 @@ class ChatConsumer(SyncConsumer):
                 'type' : 'websocket.send',
                 'text' : json.dumps(to_send)
             })
+        elif action == "verify":
+            if User.objects.filter(username=json_event["username"]).exists():
+                currentUser = list(Clients.objects.filter(channel_name = self.channel_name))[0].username
+                # convos_1 = Chats.objects.filter(recipient=currentUser, sender=json_event["recipient"]).values_list("sender", "recipient", "message")
+                # convos_2 = Chats.objects.filter(recipient=json_event["recipient"], sender=currentUser).values_list("sender", "recipient", "message")
+                convos_1 = Chats.objects.filter(recipient=currentUser, sender=json_event["username"]).values()
+                convos_2 = Chats.objects.filter(recipient=json_event["username"], sender=currentUser).values()
+                convos = list(chain(convos_1, convos_2))
+                print(convos)
+                print(list(convos))
+                to_send = {"type" : "set_log", "data" : list(convos)}
+                self.send({
+                    'type' : 'websocket.send',
+                    'text' : json.dumps(to_send)
+                })
+            else:
+                to_send = {"type" : "verify_error", "data" : "That user cannot be found"}
+                self.send({
+                'type' : 'websocket.send',
+                'text' : json.dumps(to_send)
+                })
+            
     
     def websocket_disconnect(self, event):
         print('Websocket Disconnected...', event)
