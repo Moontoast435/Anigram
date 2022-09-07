@@ -40,8 +40,10 @@ const Dashboard = ({
             </form>
         </div>
 
+
 )
 }
+
 
 const mapStateToProps = state => ({
     first_name_global: state.profile.first_name,
@@ -51,3 +53,4 @@ const mapStateToProps = state => ({
    
 })
 export default connect(mapStateToProps, { update_profile })(Dashboard);
+

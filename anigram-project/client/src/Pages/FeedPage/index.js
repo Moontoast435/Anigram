@@ -13,10 +13,10 @@ const MainPage = () => {
   }
 
 
+
   const username = useSelector((state) => state.profile.username);
   console.log(username);
   
-
 
   // const searchHandle = async (e) => {
   //   let key = e.target.value;
@@ -43,11 +43,12 @@ const MainPage = () => {
       <div>
         <div className="posts-display-board" role="posts" key={i}>
           {/* <p>{post.title}</p> */}
-          
+
+          Posted By: {post.username}
           <p>
             Image: <img src={post.image_url} />
           </p>
-          <p>Posted By: {post.username}</p>
+
           <p>Description: {post.description}</p>
         </div>
       </div>

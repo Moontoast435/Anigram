@@ -1,130 +1,125 @@
-import React, {useEffect, useState, useRef} from 'react';
-import {useSelector} from 'react-redux'
-import ChatOption from '../../components/chatOption';
-import Conversation from '../../components/conversation';
+import React, { useEffect, useState, useRef } from 'react';
+import { useSelector } from 'react-redux';
+import ChatOption from '../../components/ChatOption';
+import Conversation from '../../components/Conversation';
 // import './style.css'
 const ChatPage = () => {
+  const username = useSelector((state) => state.profile.username);
+  console.log('username is', username);
 
-    const username = useSelector(state => state.profile.username);
-    console.log("username is", username)
+  const [socket, setSocket] = useState(null);
+  const [chatList, setChatList] = useState(null);
+  const [chatLog, setChatLog] = useState();
+  const [target, setTarget] = useState(null);
+  const chatUsers = useRef(null);
 
-    const [socket, setSocket] = useState(null)
-    const [chatList, setChatList] = useState(null)
-    const [chatLog, setChatLog] = useState()
-    const [target, setTarget] = useState(null)
-    const chatUsers = useRef(null)
-
-    useEffect(() => {
-        try{
-            console.log("Hello")
-        let newSocket = new WebSocket("ws://127.0.0.1:8000/ws/ac/");
-        newSocket.onmessage = (data) => {
-            console.log(data.data)
-            let response = JSON.parse(data.data)
-            handleResponse(response)
-        }    
-        newSocket.onopen = () => {
-            newSocket.send(JSON.stringify({"type": "online", "username": username}))
-            newSocket.send(JSON.stringify({"type": "getList"}))
-        }    
-        setSocket(newSocket)
-        } catch(error){
-        console.log("Error setting socket")
-        }
-        
-
-    }, []);
-
-    
-
-    const orderMessages = (data) => {
-        console.log(data)
-        data = data.map(chat => {
-            return {
-                ...chat,
-                date : new Date(chat.date)
-            }
-        })
-        data.sort((a, b) => (a.date > b.date ? 1 : -1))
-        console.log(data)
-        return data
+  useEffect(() => {
+    try {
+      console.log('Hello');
+      let newSocket = new WebSocket('ws://127.0.0.1:8000/ws/ac/');
+      newSocket.onmessage = (data) => {
+        console.log(data.data);
+        let response = JSON.parse(data.data);
+        handleResponse(response);
+      };
+      newSocket.onopen = () => {
+        newSocket.send(JSON.stringify({ type: 'online', username: username }));
+        newSocket.send(JSON.stringify({ type: 'getList' }));
+      };
+      setSocket(newSocket);
+    } catch (error) {
+      console.log('Error setting socket');
     }
-    function handleResponse(data){
-        console.log("and the data is...", data)
-        try{
-            switch (data.type) {
-                case "set_list":
-                    setChatList(data.data)
-                    break;
-                case "set_log":
-                    console.log(data.data)
-                    let orderedMessages = orderMessages(data.data) 
-                    setChatLog(orderedMessages)
-                    console.log(chatLog)
-                    chatUsers.current.style.display = 'none'
-                    break;
-                default:
-                    break;
-            }
-        }catch(error){
-            console.log("Error handling response")
-        }
-    }
+  }, []);
 
-    let data2 = {message: "woo", type: "online"}
-    
-    const send_msg = {
-        "type": "sendMsg",
-        "recipient" : "marina",
-        "message": "I love you",
+  const orderMessages = (data) => {
+    console.log(data);
+    data = data.map((chat) => {
+      return {
+        ...chat,
+        date: new Date(chat.date),
+      };
+    });
+    data.sort((a, b) => (a.date > b.date ? 1 : -1));
+    console.log(data);
+    return data;
+  };
+  function handleResponse(data) {
+    console.log('and the data is...', data);
+    try {
+      switch (data.type) {
+        case 'set_list':
+          setChatList(data.data);
+          break;
+        case 'set_log':
+          console.log(data.data);
+          let orderedMessages = orderMessages(data.data);
+          setChatLog(orderedMessages);
+          console.log(chatLog);
+          chatUsers.current.style.display = 'none';
+          break;
+        default:
+          break;
+      }
+    } catch (error) {
+      console.log('Error handling response');
     }
+  }
 
-    const get_list = {
-        "type": "getList",  
-    }
-    
-    const sendTest = (e) => {
-        e.preventDefault()
-        socket.send(JSON.stringify(send_msg))
-    }
-    const sendMessage = (message, target) => {
-        const newMessage = {
-            "type": "sendMsg",
-            "recipient" : target,
-            "message": message,
-        }
-        socket.send(JSON.stringify(newMessage))
-        getChatLog(target)
-    }
-    const sendOnline = (e) => {
-        const online_msg = {
-            "username" : username,
-            "type" : "online"
-        }
-        e.preventDefault()
-        socket.send(JSON.stringify(online_msg))
-    }
+  let data2 = { message: 'woo', type: 'online' };
 
-    const getList = (e) => {
-        e.preventDefault()
-        socket.send(JSON.stringify(get_list))
-    }
+  const send_msg = {
+    type: 'sendMsg',
+    recipient: 'marina',
+    message: 'I love you',
+  };
 
-    const getChatLog = (targetUser) => {
-        setTarget(targetUser)
-        console.log("AND THE TARGET IS", targetUser)
-        const get_log = {
-            "type": "getLog",  
-            "recipient" : targetUser,
-        }
-        
-        socket.send(JSON.stringify(get_log))
-    }
+  const get_list = {
+    type: 'getList',
+  };
 
-    return (
-        <div className='chat-page' role='chatPage'>
-            <h1 role='h1-user'>{username}</h1>
-            {/* <div id="delete-this-when-redux">
+  const sendTest = (e) => {
+    e.preventDefault();
+    socket.send(JSON.stringify(send_msg));
+  };
+  const sendMessage = (message, target) => {
+    const newMessage = {
+      type: 'sendMsg',
+      recipient: target,
+      message: message,
+    };
+    socket.send(JSON.stringify(newMessage));
+    getChatLog(target);
+  };
+  const sendOnline = (e) => {
+    const online_msg = {
+      username: username,
+      type: 'online',
+    };
+    e.preventDefault();
+    socket.send(JSON.stringify(online_msg));
+  };
+
+  const getList = (e) => {
+    e.preventDefault();
+    socket.send(JSON.stringify(get_list));
+  };
+
+  const getChatLog = (targetUser) => {
+    setTarget(targetUser);
+    console.log('AND THE TARGET IS', targetUser);
+    const get_log = {
+      type: 'getLog',
+      recipient: targetUser,
+    };
+
+    socket.send(JSON.stringify(get_log));
+  };
+
+  return (
+    <div className="chat-page" role="chatPage">
+      <h1 role="h1-user">{username}</h1>
+      {/* <div id="delete-this-when-redux">
                 <form onSubmit={sendOnline}>
                     <input type="submit" value="Submit" />
                 </form>
@@ -135,29 +130,40 @@ const ChatPage = () => {
                     <input type="submit" value="get list" />
                 </form>
             </div> */}
-             
-            {chatList ? 
-            <div className='chat-list' ref={chatUsers}>
-                <h2>Select a chat</h2>
-            {chatList.map((user) => <ChatOption username={user[0]} onClick={getChatLog}/>)}    
-            </div> :
-            <h1>HELLO {username ? username : "WHY AREN'T YOU LOGGED IN"}</h1>    
-            }
 
-            {chatLog ?
-            <>
-                <button className='go-back-btn' onClick={() => {
-                    chatUsers.current.style.display = 'flex'
-                    setChatLog(null)}
-                }> go back  
-                </button>
-                <Conversation chatlog={chatLog} username={username} target={target} sendMsg={sendMessage} />
-            </> :
-            null}             
-
-
+      {chatList ? (
+        <div className="chat-list" ref={chatUsers}>
+          <h2>Select a chat</h2>
+          {chatList.map((user) => (
+            <ChatOption username={user[0]} onClick={getChatLog} />
+          ))}
         </div>
-    );
-}
+      ) : (
+        <h1>HELLO {username ? username : "WHY AREN'T YOU LOGGED IN"}</h1>
+      )}
+
+      {chatLog ? (
+        <>
+          <button
+            className="go-back-btn"
+            onClick={() => {
+              chatUsers.current.style.display = 'flex';
+              setChatLog(null);
+            }}
+          >
+            {' '}
+            go back
+          </button>
+          <Conversation
+            chatlog={chatLog}
+            username={username}
+            target={target}
+            sendMsg={sendMessage}
+          />
+        </>
+      ) : null}
+    </div>
+  );
+};
 
 export default ChatPage;
