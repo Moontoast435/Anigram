@@ -35,13 +35,20 @@ const PostPage = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-
     let form_data = new FormData();
     form_data.append('description', description);
     form_data.append('image_url', image_url);
     form_data.append('username', username);
 
-    console.log(username)
+    let desc = document.forms['Form']['description'].value;
+    let image = document.getElementById('img').value;
+
+    if ((desc == null || desc == '', image == null || image == '')) {
+      alert('Please Fill All Required Field');
+      return false;
+    }
+
+    console.log(username);
     console.log(form_data);
     await fetch(`http://127.0.0.1:8000/posts/api/post/create`, {
       method: 'POST',
@@ -52,7 +59,6 @@ const PostPage = () => {
     });
     navigate('/main');
   };
-
 
   // const handleSubmit = async (event) => {
   //   event.preventDefault();
@@ -76,22 +82,24 @@ const PostPage = () => {
 
   return (
     <div>
-      <form>
+      <form name="Form">
         <label>
           Enter your name:
           <input
             type="text"
+            required
             value={description}
             name="description"
             onChange={(e) => setDescription(e.target.value)}
           />
           <input
             type="file"
+            id="img"
+            required
             onChange={(event) => {
               setImageUrl(event.target.files[0]);
             }}
           />
-
         </label>
       </form>
       <button onClick={handleSubmit}>Create</button>

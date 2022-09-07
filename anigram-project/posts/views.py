@@ -45,6 +45,6 @@ def updatePost(request, pk):
     
 @api_view(['DELETE'])
 def deletePost(request,pk):
-    note = Post.objects.get(id=pk)
-    note.delete()
+    post = Post.objects.get(id=pk)
+    post.delete()
     return Response('Post was deleted!')
