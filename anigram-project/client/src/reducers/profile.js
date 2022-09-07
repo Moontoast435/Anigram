@@ -13,7 +13,8 @@ import {
     phone: '',
     city: '',
     status: '',
-    verified_breeder: 'No'
+    adoptable: '',
+    credentials: ''
   };
   
   export default function(state = initialState, action) {
@@ -30,6 +31,8 @@ import {
                 phone: payload.profile.phone,
                 city: payload.profile.city,
                 status: payload.profile.status,
+                adoptable: payload.profile.adoptable,
+                credentials: payload.profile.credentials
             }
         case LOAD_USER_PROFILE_FAIL:
             return {
@@ -40,6 +43,8 @@ import {
                 phone: '',
                 city: '',
                 status: '',
+                adoptable: '',
+                credentials: ''
             }
         case UPDATE_USER_PROFILE_FAIL:
             return {
