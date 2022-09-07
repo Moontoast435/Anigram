@@ -2,7 +2,8 @@ import React, {useEffect, useState, useRef} from 'react';
 import {useSelector} from 'react-redux'
 import ChatOption from '../../components/chatOption';
 import Conversation from '../../components/conversation';
-// import './style.css'
+import './style.css'
+
 const ChatPage = () => {
 
     const username = useSelector(state => state.profile.username);
@@ -13,10 +14,11 @@ const ChatPage = () => {
     const [chatLog, setChatLog] = useState()
     const [target, setTarget] = useState(null)
     const chatUsers = useRef(null)
-
+    const [createNew, setCreateNew] = useState(null)
+    const [newUsername, setNewUsername] = useState(null)
+    const endpoint = "ws://127.0.0.1:8000/ws/ac/"
     useEffect(() => {
         try{
-            console.log("Hello")
         let newSocket = new WebSocket("ws://127.0.0.1:8000/ws/ac/");
         newSocket.onmessage = (data) => {
             console.log(data.data)
@@ -121,9 +123,17 @@ const ChatPage = () => {
         socket.send(JSON.stringify(get_log))
     }
 
+    const createChat = () => {
+        setCreateNew(true)
+    }
+
+    const handleNewUsername = (e) => {
+        e.preventDefault()
+        //setCreateNew(true)
+    }
+
     return (
         <div className='chat-page' role='chatPage'>
-            <h1 role='h1-user'>{username}</h1>
             {/* <div id="delete-this-when-redux">
                 <form onSubmit={sendOnline}>
                     <input type="submit" value="Submit" />
@@ -138,7 +148,20 @@ const ChatPage = () => {
              
             {chatList ? 
             <div className='chat-list' ref={chatUsers}>
-                <h2>Select a chat</h2>
+                <div className='chat-menu'>
+                    <h2>Select a chat</h2>
+                    <button onClick={createChat}>Start new chat</button>
+                </div>
+                
+            {createNew ?
+            <>
+             <form>
+                <input type="text" value={newUsername} onChange={handleNewUsername} />
+                <input type="submit" value="submit" />
+             </form>
+            </> :
+            null}
+
             {chatList.map((user) => <ChatOption username={user[0]} onClick={getChatLog}/>)}    
             </div> :
             <h1>HELLO {username ? username : "WHY AREN'T YOU LOGGED IN"}</h1>    
