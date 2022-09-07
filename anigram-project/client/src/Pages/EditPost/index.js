@@ -2,37 +2,44 @@ import React from 'react';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
+import Cookies from 'js-cookie';
 
 const EditPost = () => {
   const [description, setDescription] = useState('');
   const [username, setUserName] = useState('');
   const [image_url, setImageUrl] = useState('');
-
   const { id } = useParams();
 
   useEffect(() => {
-    axios
-      .put(`http://127.0.0.1:8000/posts/api/post/${id}/update`)
-      .then((res) => {
-        setDescription(res.data.description);
-        setUserName(res.data.username);
-        setImageUrl(res.data.image_url);
-      });
+    axios.get(`http://127.0.0.1:8000/posts/api/post/${id}`).then((res) => {
+      setDescription(res.data.description);
+      setUserName(res.data.username);
+      setImageUrl(res.data.image_url);
+    });
   }, []);
 
   const navigate = useNavigate();
 
-  const data = {
-    description: description,
-    username: username,
-    image_url: image_url,
-  };
-
   function Update(e) {
     e.preventDefault();
+    const config = {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+        'X-CSRFToken': Cookies.get('csrftoken'),
+      },
+    };
+    const data = {
+      description: description,
+      username: username,
+      image_url: image_url,
+    };
     axios
-      .put(`http://127.0.0.1:8000/posts/api/post/${id}/update`, data)
-      .then(navigate('/main'));
+      .put(`http://127.0.0.1:8000/posts/api/post/${id}/update`, data, config)
+      .then(
+        setTimeout(() => {
+          navigate('/feed');
+        }, 500)
+      );
   }
 
   return (
@@ -45,13 +52,6 @@ const EditPost = () => {
           className="bg-white/10 outline-none font-normal border border-zinc-400 py-6 pl-6 mt-4"
           type="text"
           placeholder="Enter your name"
-        />
-        <input
-          value={username}
-          onChange={(e) => setUserName(e.target.value)}
-          className="bg-white/10 outline-none font-normal border border-zinc-400 py-6 pl-6 mt-4"
-          type="email"
-          placeholder="Enter your email"
         />
 
         <input

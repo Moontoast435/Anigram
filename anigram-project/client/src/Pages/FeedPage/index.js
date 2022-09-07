@@ -19,7 +19,10 @@ const FeedPage = () => {
 
   // const searchHandle = async (e) => {
   //   let key = e.target.value;
-  //   let result = await fetch(`https://anigram-application.herokuapp.com/search?search=${key}`);
+  //   console.log(key);
+  //   let result = await fetch(
+  //     `http://127.0.0.1:8000/posts/api/post?search=${key}`
+  //   );
 
   //   result = await result.json();
   //   console.log(result);
@@ -37,13 +40,18 @@ const FeedPage = () => {
 
   const postsDisplay = posts.map((post, i) => {
     return (
-      <div className="feedPost" role="posts" key={i}>
-        {/* <p>{post.title}</p> */}
-        <p>
-          <img src={post.image_url} />
-        </p>
-        {post.username}
-        <p>{post.description}</p>
+      <div>
+        <div className="posts-display-board" role="posts" key={i}>
+          {/* <p>{post.title}</p> */}
+          {post.username == username ? (
+            <Link to={`/edit/post/${post.id}`}>Edit</Link>
+          ) : null}
+          Posted By: {post.username}
+          <p>
+            Image: <img src={post.image_url} />
+          </p>
+          <p>Description: {post.description}</p>
+        </div>
       </div>
     );
   });
