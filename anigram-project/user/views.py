@@ -49,4 +49,4 @@ class UpdateUserProfileView(APIView):
 def ShowUserProfileView(request, username):
     user = list(User.objects.filter(username = username))[0]
     chosenUser = list(UserProfile.objects.filter(user = user).values())[0]
-    return JsonResponse({ 'username': json.dumps(chosenUser) })
+    return JsonResponse({ 'profile': json.dumps(chosenUser), 'username' : username })

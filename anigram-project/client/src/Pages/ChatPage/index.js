@@ -1,11 +1,13 @@
 import React, {useEffect, useState, useRef} from 'react';
-import {useSelector} from 'react-redux'
+import {useSelector, useDispatch} from 'react-redux'
 import ChatOption from '../../components/chatOption';
 import Conversation from '../../components/conversation';
 import './style.css'
+import { removeChatUser } from '../../actions/selected';
 
 const ChatPage = () => {
     const username = useSelector((state) => state.profile.username);
+    const chosenUser = useSelector(state => state.selected.chatUser)
     const [socket, setSocket] = useState(null)
     const [chatList, setChatList] = useState(null)
     const [chatLog, setChatLog] = useState()
@@ -15,6 +17,8 @@ const ChatPage = () => {
     const [newUsername, setNewUsername] = useState('')
     const endpoint = "ws://127.0.0.1:8000/ws/ac/"
     const [errorMessage, setErrorMessage] = useState(null)
+    const dispatch = useDispatch()
+
     useEffect(() => {
         try{
         let newSocket = new WebSocket("ws://127.0.0.1:8000/ws/ac/");
@@ -26,8 +30,20 @@ const ChatPage = () => {
         newSocket.onopen = () => {
             newSocket.send(JSON.stringify({"type": "online", "username": username}))
             newSocket.send(JSON.stringify({"type": "getList"}))
+            if (chosenUser != ''){
+                console.log("Here#2")
+                setTarget(chosenUser)
+                const get_log = {
+                    "type": "getLog",  
+                    "recipient" : chosenUser,
+                }
+                newSocket.send(JSON.stringify(get_log))
+                dispatch(removeChatUser)
+            }
+                    
         }    
         setSocket(newSocket)
+        
         } catch(error){
         console.log("Error setting socket")
         }   
@@ -83,7 +99,7 @@ const ChatPage = () => {
         getChatLog(target)
     }
 
-    const getChatLog = (targetUser) => {
+    function getChatLog(targetUser){
         setTarget(targetUser)
         const get_log = {
             "type": "getLog",  

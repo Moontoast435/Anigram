@@ -1,20 +1,18 @@
 import React, { useState, useEffect } from 'react';
-import { connect } from 'react-redux';
+import { connect, useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import { update_profile } from '../../actions/profile';
 import axios  from 'axios'
+import { setChatUser, setProfileUser } from '../../actions/selected';
 
 const ViewProfilePage = () => {
-    const [userData, setUserData] = useState({
-        first_name: '',
-        last_name: '',
-        phone: '',
-        city: ''
-    })
-    
+    const [userData, setUserData] = useState()
+    const [currentUser, setCurrentUser] = useState(null)
+    const chosenUser = useSelector(state => state.selected.profileUser)
+    const dispatch = useDispatch()
     const [users, setUsers] = useState()
     const [rawUsers, setRawUsers] = useState()
-
+    const navigate = useNavigate()
     const getUsers = async () => {
         let response = await axios.get('http://127.0.0.1:8000/accounts/get_users')
         setRawUsers(response.data)
@@ -28,16 +26,35 @@ const ViewProfilePage = () => {
             let result = userList.filter(user => user.username.includes(query))
             setUsers(result)
         }
+        setUsers(rawUsers)
     }
 
 
-    useEffect(() => {
-        getUsers()
+    useEffect(async () => {
+        await getUsers()
+        if (chosenUser != ''){
+            loadProfile(chosenUser)
+        }
+        
     }, []);
 
     const handleSearch = (e) => {
         e.preventDefault()
         filterUsers(e.target.elements['query'].value)
+    }
+
+    const loadProfile = async (user) => {
+        let data = await axios(`http://127.0.0.1:8000/profile/user/${user}`)
+        let response = await JSON.parse(data.data.profile)
+        console.log(response)
+        setUserData(response)
+        setCurrentUser(data.data.username)
+        setUsers(null)
+    }
+
+    const linkToChat = (username) => {
+        dispatch(setChatUser(username))
+        navigate('../chats')
     }
 
     return (
@@ -50,11 +67,26 @@ const ViewProfilePage = () => {
 
             {users ? <div>
                 {users.map(user => {return <div className="user-option"> 
-                <p>{user.username}</p>
-                <Link to=''></Link>
+                <p onClick={() => loadProfile(user.username)}>{user.username}</p>
                 </div>
                 })}
                     </div>: null}
+
+            {userData? <div>
+                <button onClick={() => {
+                    setUserData(null)
+                    filterUsers()
+                }}>Go back</button>
+                <p>Name: {userData.first_name} {userData.last_name}</p>
+                <p>Contact Number: {userData.phone}</p>
+                <p>City: {userData.city}</p>
+                <p>Credentials: {userData.credentials}</p>
+
+                <button onClick={() => linkToChat(currentUser)}>Start a chat with {userData.first_name}</button>
+            </div>
+           
+                : null
+            }
             
         </div>
 
