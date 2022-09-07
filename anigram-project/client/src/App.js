@@ -11,12 +11,12 @@ const App = () => {
         <Route path="/register" element={<Pages.Register />} />
         <Route path="/login" element={<Pages.Login />} />
         <Route exact path="/" element={<PageWrapper />}>
-          <Route path="/create" element={<Pages.CreatePost />} />
+          <Route path="/create" element={<Pages.PostPage />} />
           <Route path="/profile" element={<Pages.ProfilePage />} />
           <Route path="/feed" element={<Pages.FeedPage />} />
-
-          <Route path="*" element={<Pages.NotFoundPage />} />
         </Route>
+
+        <Route path="*" element={<Pages.NotFoundPage />} />
       </Routes>
     </div>
   );

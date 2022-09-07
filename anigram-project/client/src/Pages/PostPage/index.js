@@ -1,16 +1,16 @@
-import React from 'react';
-import { useState } from 'react';
-import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import React from "react";
+import { useState } from "react";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
-const CreatePost = () => {
+const PostPage = () => {
   //   const [post, setPost] = useState({
   //     body: 'qqq',
   //   });
   axios.defaults.withCredentials = true;
   let navigate = useNavigate();
 
-  const [description, setDescription] = useState('');
+  const [description, setDescription] = useState("");
   const [image_url, setImageUrl] = useState(null);
   // const handleSubmit = (event) => {
   //   event.preventDefault();
@@ -26,15 +26,15 @@ const CreatePost = () => {
   // };
   const handleSubmit = () => {
     const uploadData = new FormData();
-    uploadData.append('description', description);
-    uploadData.append('image_url', image_url);
+    uploadData.append("description", description);
+    uploadData.append("image_url", image_url);
 
-    fetch('http://127.0.0.1:8000/api/post/create', {
-      method: 'POST',
+    fetch("http://127.0.0.1:8000/api/post/create", {
+      method: "POST",
       body: uploadData,
     });
     setTimeout(() => {
-      navigate('/');
+      navigate("/");
     }, 30);
   };
 
@@ -62,4 +62,4 @@ const CreatePost = () => {
   );
 };
 
-export default CreatePost;
+export default PostPage;
