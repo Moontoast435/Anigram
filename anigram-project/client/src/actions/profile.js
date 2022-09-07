@@ -37,7 +37,7 @@ export const load_user = () => async dispatch => {
     }
 }
 
-export const update_profile = (first_name, last_name, phone, city, status) => async dispatch => {
+export const update_profile = (first_name, last_name, phone, city, status, adoptable, credentials) => async dispatch => {
     const config = {
         headers: {
           'Accept': "application/json",
@@ -52,7 +52,9 @@ export const update_profile = (first_name, last_name, phone, city, status) => as
         last_name,
         phone,
         city,
-        status
+        status,
+        adoptable,
+        credentials
     })
 
     try {
