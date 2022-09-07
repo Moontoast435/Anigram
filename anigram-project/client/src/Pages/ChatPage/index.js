@@ -118,6 +118,12 @@ const ChatPage = () => {
         socket.send(JSON.stringify({"type": "verify", "username" : newUsername}))
     }
 
+    const handleBack = () => {
+        chatUsers.current.style.display = 'flex'
+        setChatLog(null)
+        socket.send(JSON.stringify({"type": "getList"}))
+    }
+
     return (
         <div className='chat-page' role='chatPage'>
         {/* <div id="delete-this-when-redux">
@@ -156,13 +162,8 @@ const ChatPage = () => {
 
         {chatLog ?
         <>
-            <button className='go-back-btn' onClick={() => {
-                chatUsers.current.style.display = 'flex'
-                setChatLog(null)
-                socket.send(JSON.stringify({"type": "getList"}))}
-            }> go back  
-            </button>
-            <Conversation chatlog={chatLog} username={username} target={target} sendMsg={sendMessage} />
+            
+            <Conversation chatlog={chatLog} username={username} target={target} sendMsg={sendMessage} handleBack={handleBack} />
         </> :
         null}             
     </div>

@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 
-const Conversation = ({chatlog, username, target, sendMsg}) => {
+const Conversation = ({chatlog, username, target, sendMsg, handleBack}) => {
 
     const [input, setInput] = useState()
 
@@ -19,6 +19,7 @@ const Conversation = ({chatlog, username, target, sendMsg}) => {
 
     return (
         <div className="chatlog" role="chatLog">
+            <button className='go-back-btn' onClick={handleBack}> go back </button>
             <h2>Conversation with {target}</h2>
             {chatlog.map(chat => <>
                     <div className={`chat-single ${username == chat.sender ? "from-user" : "from-target"}`}>
