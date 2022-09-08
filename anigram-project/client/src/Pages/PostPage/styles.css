@@ -1,0 +1,94 @@
+@import url("https://fonts.googleapis.com/css2?family=Dancing+Script&family=Quicksand&display=swap");
+
+:root {
+  --postgoldlight: #f5da81;
+  --postgold: #ecc541;
+  --postwhite: rgb(245, 245, 245);
+  --postblack: rgb(39, 39, 39);
+}
+
+* {
+  box-sizing: border-box;
+  font-weight: lighter;
+}
+
+body {
+  background-color: var(--postblack);
+}
+
+.postContainer {
+  height: 100%;
+  width: 100%;
+  text-transform: uppercase;
+  overflow: auto;
+  font-size: 1.5rem;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+  color: var(--postblack);
+  font-family: Quicksand;
+}
+
+.postWrapper {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+  flex-direction: column;
+  position: absolute;
+  top: 30%;
+  left: 5%;
+  right: 5%;
+  padding: 80px 30px;
+  background-color: var(--postwhite);
+  border-radius: 20px;
+  border: 5px solid var(--postgold);
+}
+
+.postWrapper img,
+.postWrapper form,
+.postWrapper label,
+.postWrapper button {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  font-family: Quicksand;
+  text-transform: uppercase;
+  font-size: 15px !important;
+}
+
+.postWrapper form input {
+  font-family: Quicksand;
+  background-color: white;
+  color: var(--postblack);
+  font-size: 13px !important;
+  margin: 5px 5px;
+  border: 1px solid transparent;
+  border-radius: 7px;
+  padding: 5px 15px;
+  text-transform: uppercase;
+}
+
+.postWrapper form input:focus {
+  outline: none;
+  border: 1px solid var(--logingoldlight);
+}
+
+.postWrapper button {
+  font-family: Quicksand;
+  text-transform: uppercase;
+  font-size: 1rem;
+  padding: 7px 20px;
+  border-radius: 20px;
+  border: none;
+  background-color: var(--postgoldlight);
+  color: var(--postblack);
+  box-shadow: 5px 5px 8px 1px rgb(209, 209, 209);
+  margin-top: 10px;
+}
+
+.postWrapper button:focus,
+.postWrapper button:hover {
+  background-color: var(--postgold);
+}

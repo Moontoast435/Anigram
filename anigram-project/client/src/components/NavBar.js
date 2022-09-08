@@ -1,77 +1,101 @@
 import React from "react";
-import { Outlet, Link, NavLink} from "react-router-dom";
-import { logout } from '../actions/auth'
-import { connect } from 'react-redux';
+import { Outlet, Link, NavLink } from "react-router-dom";
+import { logout } from "../actions/auth";
+import { connect } from "react-redux";
+import {
+  AiOutlineHome,
+  AiOutlinePlusCircle,
+  AiOutlineLogout,
+  AiOutlineLogin,
+} from "react-icons/ai";
+import { BsChatDots, BsList } from "react-icons/bs";
+import { CgProfile } from "react-icons/cg";
+import "./navstyles.css";
+import icon from "../images/icon2.png";
 
-const NavBar = ({isAuthenticated, logout}) => {
-
-  
-
+const NavBar = ({ isAuthenticated, logout }) => {
   const authLinks = (
     <>
-        <li className="nav-item">
-            <NavLink className="nav-link " aria-current="page" exact="true" to="/profile">Profile</NavLink>
-        </li>
-        <li className="nav-item">
-            <NavLink className="nav-link " aria-current="page" exact="true" to="/chats">Chats</NavLink>
-        </li>
-        <li className="nav-item">
-            <NavLink className="nav-link " aria-current="page" onClick={() => logout()} to="/" exact="true">Logout</NavLink>
-        </li>
-        <li className="nav-item">
-            <NavLink className="nav-link " aria-current="page" exact="true" to="/create">Create post</NavLink>
-        </li>
-        
+      <li className="list">
+        <NavLink aria-current="page" exact="true" to="/chats">
+          <span className="icon">
+            <BsChatDots />
+          </span>
+        </NavLink>
+      </li>
+      <li className="list">
+        <NavLink aria-current="page" exact="true" to="/create">
+          <span className="icon">
+            <AiOutlinePlusCircle />
+          </span>
+        </NavLink>
+      </li>
+      <li className="list">
+        <NavLink aria-current="page" exact="true" to="/profile">
+          <span className="icon">
+            <CgProfile />
+          </span>
+        </NavLink>
+      </li>
+      <li className="list">
+        <a aria-current="page" onClick={() => logout()} exact={"true"} href="/">
+          <span className="icon">
+            <AiOutlineLogout />
+          </span>
+        </a>
+      </li>
     </>
-);
+  );
 
-const guestLinks = (
+  const guestLinks = (
     <>
-        <li className="nav-item">
-            <NavLink className="nav-link " aria-current="page" exact="true" to="/login">Login</NavLink>
-        </li>
-        <li className="nav-item">
-            <NavLink className="nav-link " aria-current="page" exact="true" to="/register">Register</NavLink>
-        </li>
-        
+      <li className="list">
+        <NavLink aria-current="page" exact="true" to="/login">
+          <span className="icon">
+            <AiOutlineLogin />
+          </span>
+        </NavLink>
+      </li>
+      <li className="list">
+        <NavLink aria-current="page" exact="true" to="/register">
+          <span className="icon">
+            <AiOutlineLogout />
+          </span>
+        </NavLink>
+      </li>
     </>
-)
+  );
 
   return (
     <>
-      <div>
-      <nav className="navbar navbar-expand-lg bg-light">
-        <div className="container-fluid">
-            <Link className="navbar-brand" exact="true" to="/">Anigram</Link>
-            <button className="navbar-toggler" 
-            type="button" 
-            data-bs-toggle="collapse"
-             data-bs-target="#navbarNav" 
-             aria-controls="navbarNav" 
-             aria-expanded="false" 
-             aria-label="Toggle navigation">
-            <span className="navbar-toggler-icon"></span>
-            </button>
-            <div className="collapse navbar-collapse" id="navbarNav">
-                <ul className="navbar-nav">
-                    <li className="nav-item">
-                        <NavLink className="nav-link " aria-current="page" exact="true" to="/feed">Home</NavLink>
-                    </li>
-                    { isAuthenticated ? authLinks : guestLinks }
-                </ul>
-            </div>
+      <div className="navHeader">
+        <div className="navHeaderWrap">
+          <img src={icon} alt="anigram icon" />
+          <h1>anigram</h1>
         </div>
-      </nav>
+      </div>
+      <div>
         <Outlet />
       </div>
-      <footer>test</footer>
+      <div className="navFooter">
+        <div className="navFooterWrap">
+          <ul>
+            <li className="list">
+              <NavLink aria-current="page" exact="true" to="/feed">
+                <span className="icon">
+                  <AiOutlineHome />
+                </span>
+              </NavLink>
+            </li>
+            {isAuthenticated ? authLinks : guestLinks}
+          </ul>
+        </div>
+      </div>
     </>
   );
 };
 
-const mapStateToProps = state => ({
-  isAuthenticated : state.auth.isAuthenticated
+const mapStateToProps = (state) => ({
+  isAuthenticated: state.auth.isAuthenticated,
 });
-
-
-export default connect(mapStateToProps, { logout })(NavBar) ;
+export default connect(mapStateToProps, { logout })(NavBar);
