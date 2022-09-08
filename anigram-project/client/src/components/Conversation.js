@@ -17,8 +17,8 @@ const Conversation = ({ chatlog, username, target, sendMsg, handleBack }) => {
   };
 
   return (
-    <div className="chatlog">
-      <h2>Your conversion with {target} starts here</h2>
+    <div className="chatLog">
+      <h2>Your conversation with {target} starts here</h2>
       {chatlog.map((chat) => (
         <>
           <div
@@ -30,8 +30,8 @@ const Conversation = ({ chatlog, username, target, sendMsg, handleBack }) => {
           </div>
         </>
       ))}
-      <div className="chatBox">
-        <form className="chatForm" onSubmit={handleSubmit}>
+      <div>
+        <form onSubmit={handleSubmit}>
           <button onClick={handleBack}>
             {" "}
             <span className="icon">
@@ -43,9 +43,9 @@ const Conversation = ({ chatlog, username, target, sendMsg, handleBack }) => {
             type="text"
             value={input}
             onChange={handleInput}
-            placeholder={`send a message`}
+            placeholder={`SEND A MESSAGE`}
           />
-          <input type="submit" value="Send" />
+          <input type="submit" value="SEND" />
         </form>
       </div>
     </div>

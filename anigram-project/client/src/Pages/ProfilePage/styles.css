@@ -19,98 +19,76 @@ body {
 .profileContainer {
   height: 100%;
   width: 100%;
-  text-transform: uppercase;
-  overflow: auto;
-  font-size: 1.5rem;
-  display: flex;
-  align-items: center;
-  text-align: center;
-  justify-content: center;
+  overflow-x: hidden;
   font-family: Quicksand;
+  text-transform: uppercase;
 }
 
 .profileWrapper {
   display: flex;
+  flex-direction: column;
   align-items: center;
   text-align: center;
-  justify-content: center;
-  flex-direction: column;
   position: absolute;
-  top: 12%;
+  top: 13%;
   left: 5%;
   right: 5%;
   padding: 20px 30px;
   background-color: var(--profilewhite);
-  border-radius: 20px;
   border: 5px solid var(--profilegold);
-}
-
-.profileWrapper button {
-  font-family: Quicksand;
-  text-transform: uppercase;
-  padding: 7px 20px;
   border-radius: 20px;
-  border: none;
-  background-color: var(--profilegoldlight);
-  color: var(--postblack);
-  box-shadow: 5px 5px 8px 1px rgb(209 209 209);
-  margin-top: 10px;
-  text-align: center;
-  align-items: center;
 }
 
 .profileWrapper h1 {
-  margin: 0;
-  font-size: 25px !important;
+  margin-bottom: 10px;
+  font-size: 20px !important;
 }
 
 .profileWrapper p {
-  margin: 0;
-  font-size: 15px !important;
+  margin-bottom: 10px;
+  font-size: 13px !important;
 }
 
-.profileWrapper img,
 .profileWrapper form,
 .profileWrapper label {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  font-family: Quicksand;
-  text-transform: uppercase;
-  font-size: 15px !important;
+  font-size: 13px !important;
 }
 
 .profileWrapper form input {
+  text-align: center;
+  padding: 5px 15px;
+  margin-bottom: 10px;
+  text-transform: uppercase;
   font-family: Quicksand;
-  background-color: white;
-  color: var(--postblack);
   font-size: 13px !important;
-  margin: 5px 5px;
+  color: var(--profileblack);
+  background-color: white;
   border: 1px solid transparent;
   border-radius: 7px;
-  padding: 5px 15px;
-  text-transform: uppercase;
 }
 
 .profileWrapper form input:focus {
+  border: 1px solid var(--profilegoldlight);
   outline: none;
-  border: 1px solid var(--postgoldlight);
 }
 
 .profileWrapper button {
-  font-family: Quicksand;
-  text-transform: uppercase;
-  font-size: 1rem;
+  align-items: center;
   padding: 7px 20px;
-  border-radius: 20px;
-  border: none;
-  background-color: var(--postgoldlight);
-  color: var(--postblack);
-  box-shadow: 5px 5px 8px 1px rgb(209, 209, 209);
   margin-top: 10px;
+  border: none;
+  border-radius: 20px;
+  text-transform: uppercase;
+  font-size: 15px !important;
+  font-family: Quicksand;
+  color: var(--profileblack);
+  background-color: var(--profilegoldlight);
+  box-shadow: 5px 5px 8px 1px rgb(209 209 209);
 }
 
 .profileWrapper button:focus,
 .profileWrapper button:hover {
-  background-color: var(--postgold);
+  background-color: var(--profilegold);
 }

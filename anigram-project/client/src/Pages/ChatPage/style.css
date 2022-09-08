@@ -19,110 +19,106 @@ body {
 .chatContainer {
   height: 100%;
   width: 100%;
-  overflow: auto;
-  display: flex;
-  align-items: center;
-  text-align: center;
-  justify-content: center;
+  overflow-x: hidden;
   font-family: Quicksand;
 }
 
 .chatWrapper {
+  height: fit-content;
   display: flex;
+  flex-direction: column;
   align-items: center;
   text-align: center;
-  justify-content: center;
-  flex-direction: column;
   position: absolute;
   top: 11%;
   left: 0%;
   right: 0%;
   bottom: 8.5%;
-  background-color: var(--feedblack);
-  overflow-x: hidden;
-  height: fit-content;
-  padding-bottom: 90px;
+  padding-bottom: 70px;
+  background-color: var(--chatblack);
+}
+
+.chatMenuWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.chatMenu {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  text-transform: uppercase;
+  font-size: 11px !important;
+  font-family: Quicksand;
+  color: var(--chatwhite);
+  border-bottom: 1px solid rgb(70, 70, 70);
 }
 
 .chatWrapper button {
   height: fit-content;
   width: auto;
-  border: none;
-  outline: none;
   background-color: transparent;
+  border: none;
 }
 
 .chatWrapper .icon {
-  font-size: 20px !important;
   text-align: center;
-  color: var(--navwhite);
+  margin: 3px;
+  font-size: 20px !important;
+  color: var(--chatwhite);
   user-select: none;
   -webkit-tap-highlight-color: transparent;
-  margin: 3px;
-}
-
-.chat-menu {
-  display: flex;
-  justify-content: space-evenly;
-  align-items: center;
-  width: 100%;
-  font-size: 11px !important;
-  color: var(--chatwhite);
-  text-transform: uppercase;
-  font-family: Quicksand;
-  border-bottom: 1px solid rgb(70, 70, 70);
 }
 
 .chatWrapper form {
-  font-family: Quicksand;
-  background-color: transparent;
-  padding-top: 10px;
-  font-size: 1.2rem;
   display: flex;
   flex-direction: row !important;
   align-items: center;
+  padding-top: 10px;
+  font-size: 15px !important;
 }
 
 .chatWrapper form input {
-  font-family: Quicksand;
-  background-color: rgb(54, 54, 54);
-  color: var(--chatwhite);
+  padding: 5px 15px;
+  margin-top: 5px;
+  margin-right: 5px;
+  margin-bottom: 10px;
   font-size: 13px !important;
-  margin: 5px 5px;
+  font-family: Quicksand;
+  color: var(--chatwhite);
+  background-color: rgb(54, 54, 54);
   border: 1px solid transparent;
   border-radius: 7px;
-  padding: 5px 15px;
-  text-transform: uppercase;
 }
 
 .chatWrapper form input:focus {
-  outline: none;
   border: 1px solid rgb(70, 70, 70);
+  outline: none;
 }
 
 .chatList {
   width: 100%;
   height: 100%;
-  color: var(--chatwhite);
   display: flex;
-  justify-content: start !important;
   flex-direction: column;
+  color: var(--chatwhite);
 }
 
 .chatList p {
   text-align: start !important;
-  border-bottom: 1px solid rgb(70, 70, 70);
   margin: 0px !important;
   padding: 5px;
-  font-size: 20px !important;
+  font-size: 17px !important;
+  border-bottom: 1px solid rgb(70, 70, 70);
 }
 
 .chatlog {
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 100%;
 }
 
 .chatlog h2 {
@@ -132,14 +128,14 @@ body {
   font-size: 15px;
 }
 
-div.chat-single {
+.chat-single {
   margin: 0.2rem;
   width: 85%;
   display: flex;
   justify-content: center;
 }
 
-div.chat-single p {
+.chat-single p {
   min-width: 30%;
   max-width: 70%;
   border: 1px solid rgb(70, 70, 70);
@@ -148,37 +144,30 @@ div.chat-single p {
   color: var(--chatwhite);
 }
 
-div.from-user {
+.from-user {
   justify-content: right;
 }
 
-div.from-user p {
+.from-user p {
   background-color: rgb(54, 54, 54);
   padding: 0 1rem 0 1rem;
   color: var(--chatwhite);
 }
 
-div.from-target {
+.from-target {
   justify-content: left;
 }
 
-div.from-target p {
+.from-target p {
   background-color: rgb(54, 54, 54);
   padding: 0 1rem 0 1rem;
 }
 
-div.chat-list {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-
-div.chat-option {
+.chat-option {
   width: 100%;
 }
 
-div.chat-option p {
+.chat-option p {
   font-size: 1.5rem;
   margin: 1rem;
   margin-left: 0;

@@ -46,7 +46,6 @@ const EditPost = () => {
   return (
     <div className="editContainer">
       <div className="editWrapper">
-        <p>edit post</p>
         <form>
           <input
             type="file"

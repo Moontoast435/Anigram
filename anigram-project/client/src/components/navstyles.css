@@ -13,27 +13,27 @@
 }
 
 .navHeader {
+  max-height: 90px;
+  min-width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
-  max-height: 90px;
-  font-family: Quicksand;
-  min-width: 100%;
+  position: fixed;
   top: 0;
   left: 0;
-  position: fixed;
-  border-bottom: 5px solid var(--feedgold);
-  z-index: 10;
+  border-bottom: 5px solid var(--navgold);
+  z-index: 1;
 }
 
 .navHeaderWrap {
   min-width: 100%;
   height: 85px;
-  background-color: var(--navblack);
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  position: relative;
+  background-color: var(--navblack);
 }
 
 .navHeaderWrap img {
@@ -43,57 +43,57 @@
 }
 
 .navHeaderWrap h1 {
-  color: var(--navgold);
   margin-top: 0;
   margin-bottom: 10px;
   font-family: Dancing Script;
+  color: var(--navgold);
 }
 
 .navFooter {
+  min-height: 70px;
+  min-width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 70px;
-  font-family: Quicksand;
-  min-width: 100%;
+  position: fixed;
   bottom: 0;
   left: 0;
-  position: fixed;
-  border-top: 5px solid var(--feedgold);
+  border-top: 5px solid var(--navgold);
 }
 
 .navFooterWrap {
   min-width: 100%;
   height: 70px;
-  background-color: var(--navblack);
-  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
+  position: relative;
+  background-color: var(--navblack);
+  z-index: 1;
 }
 
 .navFooterWrap ul {
-  padding: 0px;
-  display: flex;
   width: 100%;
+  display: flex;
+  padding: 0px;
   user-select: none;
 }
 
 .navFooterWrap ul li {
+  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 100%;
   text-align: center;
   user-select: none;
   -webkit-tap-highlight-color: transparent;
 }
 
 .navFooterWrap ul li a .icon {
-  font-size: 1.5em;
   text-align: center;
-  transition: 0.5s;
+  font-size: 25px;
   color: var(--navwhite);
+  transition: 0.5s;
   user-select: none;
   -webkit-tap-highlight-color: transparent;
 }
