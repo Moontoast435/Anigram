@@ -8,10 +8,12 @@ import "./styles.css";
 import { BiDotsHorizontalRounded } from "react-icons/bi";
 import { TiDeleteOutline } from "react-icons/ti";
 import { setProfileUser } from "../../actions/selected";
-import axios  from 'axios';
+import { BsHouseDoor } from "react-icons/bs";
+
+import axios from "axios";
 const FeedPage = () => {
   let navigate = useNavigate();
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const [posts, setPosts] = useState([]);
   const [isAdoptable, setAdoptable] = useState(false);
 
@@ -45,52 +47,57 @@ const FeedPage = () => {
     });
   };
 
-  const navigateToView = (username) =>{
-    dispatch(setProfileUser(username))
-    navigate('../view')
-  } 
+  const navigateToView = (username) => {
+    dispatch(setProfileUser(username));
+    navigate("../view");
+  };
   const loadProfile = async (user) => {
-    let data = await axios(`http://127.0.0.1:8000/profile/user/${user}`)
+    let data = await axios(`http://127.0.0.1:8000/profile/user/${user}`);
     let response = await JSON.parse(data.data.profile);
     setAdoptable(response.adoptable);
-}
+  };
 
   const postsDisplay = posts.map((post, i) => {
     loadProfile(post.username);
-    return (<>
-      <div>
-        <div role="posts" key={i}>
-          <div className="feedPost">
-            <div className="feedUser">
-              <p onClick={() => navigateToView(post.username)}>{post.username}</p>
-              {isAdoptable ? (
-              <p className="adoptable-status">I want to be adopted!</p>
-              ): null}     
-              {post.username == username ? (
-                <button onClick={() => deletePost(post.id)}>
-                  <span className="icon">
-                    <TiDeleteOutline />
+    return (
+      <>
+        <div>
+          <div role="posts" key={i}>
+            <div className="feedPost">
+              <div className="feedUser">
+                <p onClick={() => navigateToView(post.username)}>
+                  {post.username}
+                </p>
+                {isAdoptable ? (
+                  <span className="adoptable-status">
+                    <BsHouseDoor />
                   </span>
-                </button>
-              ) : null}
-            </div>
-            <img src={post.image_url} />
-            <div className="feedDesc">
-              <div className="feedUser2">
-              <p>{post.username}</p>
+                ) : null}
                 {post.username == username ? (
-                  <Link to={`/edit/post/${post.id}`}>
+                  <button onClick={() => deletePost(post.id)}>
                     <span className="icon">
-                      <BiDotsHorizontalRounded />
+                      <TiDeleteOutline />
                     </span>
-                  </Link>
+                  </button>
                 ) : null}
               </div>
-              <p>{post.description}</p>
+              <img src={post.image_url} />
+              <div className="feedDesc">
+                <div className="feedUser2">
+                  <p>{post.username}</p>
+                  {post.username == username ? (
+                    <Link to={`/edit/post/${post.id}`}>
+                      <span className="icon">
+                        <BiDotsHorizontalRounded />
+                      </span>
+                    </Link>
+                  ) : null}
+                </div>
+                <p>{post.description}</p>
+              </div>
             </div>
           </div>
         </div>
-      </div>
       </>
     );
   });
@@ -99,7 +106,7 @@ const FeedPage = () => {
     <>
       <div className="feedContainer" role="posts-display">
         <div className="feedWrapper">
-          <SearchPage setPosts={setPosts}/>
+          <SearchPage setPosts={setPosts} />
           {postsDisplay}
         </div>
       </div>
