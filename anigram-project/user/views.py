@@ -6,17 +6,21 @@ from .serializers import UserProfileSerializer
 from django.http import JsonResponse
 import json 
 class GetUserProfileView(APIView):
-    def get(self, username, format=None):
+    def get(self, request, format=None):
         try:
             user = self.request.user
-            
-            username = user.username
-            user_profile = UserProfile.objects.get(user=user)
-            user_profile = UserProfileSerializer(user_profile)
 
-            return Response({'profile' : user_profile.data, 'username': str(username)})
+            username = user.username
+            
+            user_profile = UserProfile.objects.get(user=user)
+            print(user_profile)
+            user_profile = UserProfileSerializer(user_profile)
+            
+            return Response({ 'profile': user_profile.data, 'username': str(username) })
         except:
+
             return Response({'error': 'Something went wrong when retrieving profile'})
+
 
            
 class UpdateUserProfileView(APIView):
@@ -26,13 +30,20 @@ class UpdateUserProfileView(APIView):
             username = user.username
 
             data = self.request.data
-            first_name = data['first_name']
-            last_name = data['last_name']
+            pet_name = data['pet_name']
+            owner_name = data['owner_name']
             phone = data['phone']
             city = data['city']
             status = data['status']
+            adoptable = data['adoptable']
+            credentials = data['credentials']
             
-            UserProfile.objects.filter(user=user).update(first_name=first_name, last_name=last_name, phone=phone, city=city, status=status)
+            if adoptable == True:
+                 UserProfile.objects.filter(user=user).update(adoptable=True)
+            elif adoptable == False:
+                 UserProfile.objects.filter(user=user).update(adoptable=False)
+                 
+            UserProfile.objects.filter(user=user).update(pet_name=pet_name, owner_name=owner_name, phone=phone, city=city, status=status, credentials=credentials)
 
             user_profile = UserProfile.objects.get(user=user)
             user_profile = UserProfileSerializer(user_profile)
@@ -50,3 +61,4 @@ def ShowUserProfileView(request, username):
     user = list(User.objects.filter(username = username))[0]
     chosenUser = list(UserProfile.objects.filter(user = user).values())[0]
     return JsonResponse({ 'profile': json.dumps(chosenUser), 'username' : username })
+

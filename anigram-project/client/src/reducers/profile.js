@@ -8,12 +8,13 @@ import {
   
   const initialState = {
     username: '',
-    first_name: '',
-    last_name: '',
+    pet_name: '',
+    owner_name: '',
     phone: '',
     city: '',
     status: '',
-    verified_breeder: 'No'
+    adoptable: '',
+    credentials: ''
   };
   
   export default function(state = initialState, action) {
@@ -25,21 +26,25 @@ import {
             return {
                 ...state,
                 username: payload.username,
-                first_name: payload.profile.first_name,
-                last_name: payload.profile.last_name,
+                pet_name: payload.profile.pet_name,
+                owner_name: payload.profile.owner_name,
                 phone: payload.profile.phone,
                 city: payload.profile.city,
-                status: payload.profile.status
+                status: payload.profile.status,
+                adoptable: payload.profile.adoptable,
+                credentials: payload.profile.credentials
             }
         case LOAD_USER_PROFILE_FAIL:
             return {
                 ...state,
                 username: '',
-                first_name: '',
-                last_name: '',
+                pet_name: '',
+                owner_name: '',
                 phone: '',
                 city: '',
                 status: '',
+                adoptable: '',
+                credentials: ''
             }
         case UPDATE_USER_PROFILE_FAIL:
             return {
