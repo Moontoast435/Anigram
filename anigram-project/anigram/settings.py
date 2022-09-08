@@ -139,7 +139,7 @@ STATIC_URL = 'static/'
 
 
 # STATIC_ROOT = BASE_DIR / "staticfiles"
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATIC_ROOT = os.path.join(BASE_DIR, 'client/static/client')
 
 
 STATICFILES_DIRS = [
@@ -166,6 +166,5 @@ REST_FRAMEWORK = {
 CORS_ORIGIN_ALLOW_ALL = True
 
 
-STATICFILES_STORAGE = "whitenoise.storage.CompressedStaticFilesStorage"
 
 # django_heroku.settings(locals())
