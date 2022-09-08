@@ -13,7 +13,6 @@ class GetUserProfileView(APIView):
             username = user.username
             
             user_profile = UserProfile.objects.get(user=user)
-            print(user_profile)
             user_profile = UserProfileSerializer(user_profile)
             
             return Response({ 'profile': user_profile.data, 'username': str(username) })
