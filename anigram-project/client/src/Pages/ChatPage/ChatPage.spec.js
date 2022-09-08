@@ -45,7 +45,7 @@ describe('Testing the quizroom page', () => {
     //   });
 
     beforeEach(() => {
-        ws = new WS("ws://127.0.0.1:8000/ws/ac/")
+        ws = new WS("ws://127.0.0.1:8000/ws/ac/", { jsonProtocol: true });
     });
     afterEach(() => {
         WS.clean()
@@ -57,13 +57,53 @@ describe('Testing the quizroom page', () => {
         let chatPageDiv = screen.getByRole('chatPage')
         expect(chatPageDiv).toBeInTheDocument()
     })
-    it('can connect to the websocket server', async () => {
+
+    it('connects to the websocket server on startup', async () => {
         let initState = {auth: {isAuthenticated: true}, profile: { username: "mattr"}};
         renderWithReduxProvider(<ChatPage />, { initState });
         await ws.connected
         
-        await expect(ws).toReceiveMessage(JSON.stringify({"type": "online", "username": "mattr"}));
+        await expect(ws).toReceiveMessage(({"type": "online", "username": "mattr"}));
+        await expect(ws).toReceiveMessage(({"type": "getList"}));
     })
+
+    it('displays a list of open conversations for the user to select from', async () => {
+        let initState = {auth: {isAuthenticated: true}, profile: { username: "mattr"}};
+        renderWithReduxProvider(<ChatPage />, { initState });
+        await ws.connected
+        const mock_data = [["seanm"], ["marina"], ["testUser"]]
+        await ws.send({ type: "set_list", data: mock_data });
+        let chatList = screen.getByRole("chatList")
+        expect(chatList).toBeInTheDocument()
+        expect(chatList.children.length).toEqual(mock_data.length + 1)
+    })
+
+    it('Opens a selected chat and displays the log of messages', async () => {
+        let initState = {auth: {isAuthenticated: true}, profile: { username: "mattr"}};
+        renderWithReduxProvider(<ChatPage />, { initState });
+        await ws.connected
+        const mock_data = [{'id': 9, 'sender': 'mattr', 'recipient': 'Kate Bush', 'message': 'Hello?', 'date': '2022-09-07 12:10:29.894310'}, {'id': 10, 'sender': 'mattr', 'recipient': 'Kate Bush', 'message': 'For the record I was a fan before strange things', 'date': '2022-09-07 12:10:37.273186'}, {'id': 11, 'sender': 'Kate Bush', 'recipient': 'mattr', 'message': 'Who?', 'date': '2022-09-07 12:24:55.270246'}]
+        await ws.send({ type: "set_log", data: mock_data });
+        let chatLog = screen.getByRole("chatLog")
+        expect(chatLog).toBeInTheDocument()
+        expect(chatLog.children.length).toEqual(mock_data.length + 2)
+    })
+
+    it('Opens a selected chat and displays the log of messages', async () => {
+        let initState = {auth: {isAuthenticated: true}, profile: { username: "mattr"}};
+        renderWithReduxProvider(<ChatPage />, { initState });
+        await ws.connected
+        const mock_data = [["seanm"], ["marina"], ["testUser"]]
+        await ws.send({ type: "set_list", data: mock_data });
+        let createChatBtn = screen.getByText('Start new chat')
+       expect(createChatBtn).toBeInTheDocument()
+    })
+
+    // [{'id': 9, 'sender': 'mattr', 'recipient': 'Kate Bush', 'message': 'Hello?', 'date': '2022-09-07 12:10:29.894310'}, {'id': 10, 'sender': 'mattr', 'recipient': 'Kate Bush', 'message': 'For the record I was a fan before strange things', 'date': '2022-09-07 12:10:37.273186'}, {'id': 11, 'sender': 'Kate Bush', 'recipient': 'mattr', 'message': 'Who?', 'date': '2022-09-07 12:24:55.270246'}]
+
+    
+
+
 
 
 

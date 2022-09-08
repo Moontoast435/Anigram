@@ -1,6 +1,6 @@
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
-import  Layout  from "./layout/PageWrapper/Layout";
+import Layout from './layout/PageWrapper/Layout';
 import * as Pages from './Pages';
 
 const App = () => {
@@ -15,7 +15,9 @@ const App = () => {
           <Route path="/profile" element={<Pages.ProfilePage />} />
           <Route path="/feed" element={<Pages.FeedPage />} />
           <Route path="/chats" element={<Pages.ChatPage />} />
-          {/* <Route path="/edit/post/:id" element={<Pages.EditPost />} /> */}
+          <Route path="/edit/post/:id" element={<Pages.EditPost />} />
+          <Route path="/view" element={<Pages.ViewProfilePage />} />
+
         </Route>
 
         <Route path="*" element={<Pages.NotFoundPage />} />
