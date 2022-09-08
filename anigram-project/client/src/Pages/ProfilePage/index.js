@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { update_profile } from "../../actions/profile";
+import "./styles.css";
 
 const ProfilePage = ({
   update_profile,

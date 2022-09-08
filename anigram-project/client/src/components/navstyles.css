@@ -23,6 +23,7 @@
   left: 0;
   position: fixed;
   border-bottom: 5px solid var(--feedgold);
+  z-index: 10;
 }
 
 .navHeaderWrap {
