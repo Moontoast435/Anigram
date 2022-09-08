@@ -2,7 +2,6 @@ import React from 'react';
 
 const ChatOption = ({username, onClick}) => {
     const handleClick = () => {
-        console.log(`handling the click for user ${username}`)
         onClick(username)
     }
     return (
