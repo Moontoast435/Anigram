@@ -29,7 +29,7 @@ import {
                 last_name: payload.profile.last_name,
                 phone: payload.profile.phone,
                 city: payload.profile.city,
-                status: payload.profile.status,
+                status: payload.profile.status
             }
         case LOAD_USER_PROFILE_FAIL:
             return {

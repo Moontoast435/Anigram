@@ -7,3 +7,4 @@ export { default as ProfilePage } from "./ProfilePage";
 export { default as FeedPage } from "./FeedPage";
 export { default as PostPage } from "./PostPage";
 export { default as ChatPage } from "./ChatPage";
+export { default as ViewProfilePage } from "./ViewProfilePage";
