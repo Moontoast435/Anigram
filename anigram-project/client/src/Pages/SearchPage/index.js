@@ -8,7 +8,7 @@ const SearchPage = ({setPosts}) => {
     let key = e.target.value;
     console.log(key);
     let result = await fetch(
-      `http://127.0.0.1:8000/posts/api/post?search=${key}`
+      `https://anigram-application.herokuapp.com/posts/api/post?search=${key}`
     );
 
     result = await result.json();
