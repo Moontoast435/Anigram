@@ -9,7 +9,7 @@ import os
 #     return render(request, 'index.html')
 
 def index(request):
-    path = os.path.join(os.path.dirname(__file__), 'static', 'client/main.js')
+    path = os.path.join(os.path.dirname(__file__), 'static', 'main.js')
     print(path)
     if os.path.isfile(path):
         with open(path, 'rb') as file:
