@@ -65,6 +65,7 @@ const FeedPage = () => {
             <img src={post.image_url} />
             <div className="feedDesc">
               <div className="feedUser2">
+              <p>{post.username}</p>
                 {post.username == username ? (
                   <Link to={`/edit/post/${post.id}`}>
                     <span className="icon">
