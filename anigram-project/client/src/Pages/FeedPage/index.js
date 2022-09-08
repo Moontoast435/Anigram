@@ -49,7 +49,7 @@ const FeedPage = () => {
     navigate('../view')
   } 
 
-  const postsDisplay = posts.map((post, i) => {
+  const postsDisplay = posts.reverse().map((post, i) => {
     return (<>
       <div>
         <div role="posts" key={i}>
