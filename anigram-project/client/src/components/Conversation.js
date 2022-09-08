@@ -5,6 +5,7 @@ const Conversation = ({ chatlog, username, target, sendMsg, handleBack }) => {
   const [input, setInput] = useState('');
 
   const handleInput = (e) => {
+    e.preventDefault()
     setInput(e.target.value);
   };
 
