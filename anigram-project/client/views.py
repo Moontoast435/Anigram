@@ -17,4 +17,4 @@ class Assets(View):
             with open(path, 'rb') as file:
                 return HttpResponse(file.read(), content_type='application/javascript')
         else:
-            return HttpResponseNotFound()
+            return HttpResponseNotFound();
