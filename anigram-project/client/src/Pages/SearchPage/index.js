@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import React from 'react';
 
-const SearchPage = () => {
+const SearchPage = ({setPosts}) => {
   const [searchvalue, setSearchValue] = useState([]);
 
   const searchHandle = async (e) => {
@@ -12,7 +12,8 @@ const SearchPage = () => {
     );
 
     result = await result.json();
-    setSearchValue(result);
+    //setSearchValue(result);
+    setPosts(result)
     console.log(searchvalue);
     if (result) {
       console.log(result);
@@ -20,7 +21,7 @@ const SearchPage = () => {
     }
   };
   return (
-    <div>
+    <div className='filter-feed'>
       <input type="text" onChange={searchHandle} />
       {searchvalue.map((searchdata) => (
         <div>
