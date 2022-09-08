@@ -129,3 +129,7 @@ body {
   color: var(--navgold);
   -webkit-tap-highlight-color: transparent;
 }
+
+.adoption-status {
+  font-size: 1em !important;
+}
