@@ -4,18 +4,19 @@ from rest_framework.response import Response
 from rest_framework.decorators import api_view
 from .serializers import PostSerializer
 from rest_framework import generics, permissions
+from rest_framework.permissions import AllowAny
 from .models import Post
+from rest_framework.filters import SearchFilter
 
 class PostListCreate(generics.ListCreateAPIView):
     queryset = Post.objects.all()
     serializer_class = PostSerializer
-  
+    filter_backends = [SearchFilter]
+    search_fields = ['username']
+ 
+   
 
-# @api_view(['GET'])
-# def getPosts(request):
-#     posts = Post.objects.all()
-#     serializer = PostSerializer(posts, many=True)
-#     return Response(serializer.data)
+
 
 @api_view(['GET'])
 def getPost(request, pk):
@@ -35,17 +36,15 @@ def createPost(request):
 
 @api_view(['PUT'])
 def updatePost(request, pk):
-    breakpoint()
     data = request.data
     post = Post.objects.get(id=pk)
     serializer = PostSerializer(instance=post, data=data)
-
     if serializer.is_valid(raise_exception=True):
         serializer.save()
     return Response(serializer.data)
     
 @api_view(['DELETE'])
 def deletePost(request,pk):
-    note = Post.objects.get(id=pk)
-    note.delete()
+    post = Post.objects.get(id=pk)
+    post.delete()
     return Response('Post was deleted!')
