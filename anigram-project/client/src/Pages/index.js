@@ -8,3 +8,5 @@ export { default as FeedPage } from './FeedPage';
 export { default as PostPage } from './PostPage';
 export { default as ChatPage } from './ChatPage';
 export { default as SearchPage } from './SearchPage';
+export { default as ViewProfilePage } from "./ViewProfilePage";
+

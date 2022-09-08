@@ -16,6 +16,8 @@ const App = () => {
           <Route path="/feed" element={<Pages.FeedPage />} />
           <Route path="/chats" element={<Pages.ChatPage />} />
           <Route path="/edit/post/:id" element={<Pages.EditPost />} />
+          <Route path="/view" element={<Pages.ViewProfilePage />} />
+
         </Route>
 
         <Route path="*" element={<Pages.NotFoundPage />} />
