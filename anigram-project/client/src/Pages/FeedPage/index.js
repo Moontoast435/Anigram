@@ -8,8 +8,6 @@ import "./styles.css";
 import { BiDotsHorizontalRounded } from "react-icons/bi";
 import { TiDeleteOutline } from "react-icons/ti";
 import { setProfileUser } from "../../actions/selected";
-import { BsHouseDoor } from "react-icons/bs";
-
 import axios from "axios";
 const FeedPage = () => {
   let navigate = useNavigate();
@@ -69,9 +67,7 @@ const FeedPage = () => {
                   {post.username}
                 </p>
                 {isAdoptable ? (
-                  <span className="adoptable-status">
-                    <BsHouseDoor />
-                  </span>
+                  <p className="adoptable-status">I want to be adopted!</p>
                 ) : null}
                 {post.username == username ? (
                   <button onClick={() => deletePost(post.id)}>
