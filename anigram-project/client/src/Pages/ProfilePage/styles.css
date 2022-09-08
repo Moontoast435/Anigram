@@ -50,10 +50,66 @@ body {
   padding: 7px 20px;
   border-radius: 20px;
   border: none;
-  background-color: var(--postgoldlight);
+  background-color: var(--profilegoldlight);
   color: var(--postblack);
   box-shadow: 5px 5px 8px 1px rgb(209 209 209);
   margin-top: 10px;
   text-align: center;
   align-items: center;
+}
+
+.profileWrapper h1 {
+  margin: 0;
+  font-size: 25px !important;
+}
+
+.profileWrapper p {
+  margin: 0;
+  font-size: 15px !important;
+}
+
+.profileWrapper img,
+.profileWrapper form,
+.profileWrapper label{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  font-family: Quicksand;
+  text-transform: uppercase;
+  font-size: 15px !important;
+}
+
+.profileWrapper form input {
+  font-family: Quicksand;
+  background-color: white;
+  color: var(--postblack);
+  font-size: 13px !important;
+  margin: 5px 5px;
+  border: 1px solid transparent;
+  border-radius: 7px;
+  padding: 5px 15px;
+  text-transform: uppercase;
+}
+
+.profileWrapper form input:focus {
+  outline: none;
+  border: 1px solid var(--postgoldlight);
+}
+
+.profileWrapper button {
+  font-family: Quicksand;
+  text-transform: uppercase;
+  font-size: 1rem;
+  padding: 7px 20px;
+  border-radius: 20px;
+  border: none;
+  background-color: var(--postgoldlight);
+  color: var(--postblack);
+  box-shadow: 5px 5px 8px 1px rgb(209, 209, 209);
+  margin-top: 10px;
+}
+
+.profileWrapper button:focus,
+.profileWrapper button:hover {
+  background-color: var(--postgold);
 }

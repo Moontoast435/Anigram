@@ -13,6 +13,7 @@ const ViewProfilePage = () => {
     const [users, setUsers] = useState()
     const [rawUsers, setRawUsers] = useState()
     const navigate = useNavigate()
+
     const getUsers = async () => {
         let response = await axios.get('http://127.0.0.1:8000/accounts/get_users')
         setRawUsers(response.data)
@@ -30,13 +31,15 @@ const ViewProfilePage = () => {
     }
 
 
-    useEffect(async () => {
-        await getUsers()
-        if (chosenUser != ''){
-            loadProfile(chosenUser)
-        }
+    useEffect(() => {
+        const asyncFunc = async () => {
+            await getUsers()
+            if (chosenUser != ''){
+                loadProfile(chosenUser)
+        }}
+        asyncFunc()
         
-    }, []);
+    } , []);    
 
     const handleSearch = (e) => {
         e.preventDefault()
@@ -75,6 +78,8 @@ const ViewProfilePage = () => {
             {userData? <div>
                 
                 <p>Pet Name: {userData.pet_name}</p>
+                { userData.adoptable ? <p>Looking to be adopted </p> : null}
+                <p>Status: {userData.status}</p>
                 <p>Owner: {userData.owner_name}</p>
                 <p>Contact Number: {userData.phone}</p>
                 <p>City: {userData.city}</p>

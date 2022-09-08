@@ -45,12 +45,13 @@ const ProfilePage = ({
     const onChange = e => setFormData({...formData, [e.target.name]: e.target.value});
 
 
-
+    const onSubmit = (e) => {
         const updateProfile = async () => {
              await update_profile(pet_name, owner_name, phone, city, status, adoptable, credentials);
              setProfileUpdated(!profileUpdated);
         };
         updateProfile();
+      }
      
     
      const toggleAdoption = () => {

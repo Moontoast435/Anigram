@@ -72,7 +72,7 @@ const ChatPage = () => {
                 case "set_log":
                     let orderedMessages = orderMessages(data.data) 
                     setChatLog(orderedMessages)
-                    chatUsers.current.style.display = 'none'
+                    setChatList(null)
                     setCreateNew(false)
                     break;
                 case "verify_error":
@@ -85,6 +85,10 @@ const ChatPage = () => {
         }catch(error){
             console.log("Error handling response", error)
         }
+    }
+
+    const handleNewUsername = (e) => {
+        setNewUsername(e.target.value)
     }
   
 
@@ -119,7 +123,7 @@ const ChatPage = () => {
     }
 
     const handleBack = () => {
-        chatUsers.current.style.display = 'flex'
+        // chatUsers.current.style.display = 'flex'
         setChatLog(null)
         socket.send(JSON.stringify({"type": "getList"}))
     }
@@ -182,19 +186,6 @@ const ChatPage = () => {
 
         {chatLog ? (
           <>
-            <button
-              className="go-back-btn"
-              onClick={() => {
-                chatUsers.current.style.display = "flex";
-                setChatLog(null);
-                socket.send(JSON.stringify({ type: "getList" }));
-              }}
-            >
-              {" "}
-              <span className="icon">
-                <TiArrowBackOutline />
-              </span>
-            </button>
             <Conversation
               chatlog={chatLog}
               username={username}
