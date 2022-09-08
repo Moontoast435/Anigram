@@ -43,7 +43,7 @@ const FeedPage = () => {
     });
   };
   const postsDisplay = posts.map((post, i) => {
-    return (
+    return (<>
       <div>
         <div role="posts" key={i}>
           <div className="feedPost">
@@ -74,13 +74,17 @@ const FeedPage = () => {
           </div>
         </div>
       </div>
+      </>
     );
   });
 
   return (
     <>
       <div className="feedContainer" role="posts-display">
-        <div className="feedWrapper">{postsDisplay}</div>
+        <div className="feedWrapper">
+          <SearchPage setPosts={setPosts}/>
+          {postsDisplay}
+        </div>
       </div>
     </>
   );
