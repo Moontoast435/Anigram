@@ -24,7 +24,6 @@ const ChatPage = () => {
         try{
         let newSocket = new WebSocket("ws://127.0.0.1:8000/ws/ac/");
         newSocket.onmessage = (data) => {
-            console.log(data)
             let response = JSON.parse(data.data)
             handleResponse(response)
         }    
@@ -32,7 +31,6 @@ const ChatPage = () => {
             newSocket.send(JSON.stringify({"type": "online", "username": username}))
             newSocket.send(JSON.stringify({"type": "getList"}))
             if (chosenUser != ''){
-                console.log("Here#2")
                 setTarget(chosenUser)
                 const get_log = {
                     "type": "getLog",  
@@ -41,14 +39,11 @@ const ChatPage = () => {
                 newSocket.send(JSON.stringify(get_log))
                 dispatch(removeChatUser)
             }
-                    
         }    
         setSocket(newSocket)
-        
         } catch(error){
         console.log("Error setting socket")
         }   
-
     }, []);
 
     const orderMessages = (data) => {
@@ -181,7 +176,7 @@ const ChatPage = () => {
             </div>
           </div>
         ) : (
-          <h1>HELLO {username ? username : "WHY AREN'T YOU LOGGED IN"}</h1>
+          null
         )}
 
         {chatLog ? (
