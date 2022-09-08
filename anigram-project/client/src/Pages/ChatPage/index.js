@@ -16,13 +16,13 @@ const ChatPage = () => {
     const chatUsers = useRef(null)
     const [createNew, setCreateNew] = useState(null)
     const [newUsername, setNewUsername] = useState('')
-    const endpoint = "ws://127.0.0.1:8000/ws/ac/"
+    const endpoint = "ws://anigram-application.herokuapp.com/ws/ac/"
     const [errorMessage, setErrorMessage] = useState(null)
     const dispatch = useDispatch()
 
     useEffect(() => {
         try{
-        let newSocket = new WebSocket("ws://127.0.0.1:8000/ws/ac/");
+        let newSocket = new WebSocket("ws://anigram-application.herokuapp.com/ws/ac/");
         newSocket.onmessage = (data) => {
             let response = JSON.parse(data.data)
             handleResponse(response)
