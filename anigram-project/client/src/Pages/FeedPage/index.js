@@ -8,10 +8,12 @@ import "./styles.css";
 import { BiDotsHorizontalRounded } from "react-icons/bi";
 import { TiDeleteOutline } from "react-icons/ti";
 import { setProfileUser } from "../../actions/selected";
+import axios  from 'axios';
 const FeedPage = () => {
   let navigate = useNavigate();
   const dispatch = useDispatch()
   const [posts, setPosts] = useState([]);
+  const [isAdoptable, setAdoptable] = useState(false);
 
   // function handleClick() {
   //   navigate("/create");
@@ -47,13 +49,23 @@ const FeedPage = () => {
     dispatch(setProfileUser(username))
     navigate('../view')
   } 
+  const loadProfile = async (user) => {
+    let data = await axios(`http://127.0.0.1:8000/profile/user/${user}`)
+    let response = await JSON.parse(data.data.profile);
+    setAdoptable(response.adoptable);
+}
+
   const postsDisplay = posts.map((post, i) => {
+    loadProfile(post.username);
     return (<>
       <div>
         <div role="posts" key={i}>
           <div className="feedPost">
             <div className="feedUser">
               <p onClick={() => navigateToView(post.username)}>{post.username}</p>
+              {isAdoptable ? (
+              <p className="adoptable-status">I want to be adopted!</p>
+              ): null}     
               {post.username == username ? (
                 <button onClick={() => deletePost(post.id)}>
                   <span className="icon">

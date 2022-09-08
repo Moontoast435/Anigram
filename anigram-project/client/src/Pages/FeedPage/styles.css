@@ -146,3 +146,7 @@ body {
   outline: none;
   border: 1px solid rgb(70, 70, 70);
 }
+
+.adoption-status {
+  font-size: 1em !important;
+}
