@@ -13,7 +13,7 @@
 }
 
 body {
-  background-color: var(--homeblack);
+  background-color: var(--chatblack);
 }
 
 .chatContainer {
@@ -78,6 +78,9 @@ body {
   background-color: transparent;
   padding-top: 10px;
   font-size: 1.2rem;
+  display: flex;
+  flex-direction: row !important;
+  align-items: center;
 }
 
 .chatWrapper form input {
@@ -180,9 +183,4 @@ div.chat-option p {
   margin: 1rem;
   margin-left: 0;
   text-align: center;
-}
-
-.go-back-btn {
-  align-self: flex-start;
-  margin-left: 2rem;
 }
