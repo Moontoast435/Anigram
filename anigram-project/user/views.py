@@ -12,6 +12,7 @@ class GetUserProfileView(APIView):
             username = user.username
             
             user_profile = UserProfile.objects.get(user=user)
+            print(user_profile)
             user_profile = UserProfileSerializer(user_profile)
             
             return Response({ 'profile': user_profile.data, 'username': str(username) })
@@ -25,8 +26,8 @@ class UpdateUserProfileView(APIView):
             username = user.username
 
             data = self.request.data
-            first_name = data['first_name']
-            last_name = data['last_name']
+            pet_name = data['pet_name']
+            owner_name = data['owner_name']
             phone = data['phone']
             city = data['city']
             status = data['status']
@@ -38,7 +39,7 @@ class UpdateUserProfileView(APIView):
             elif adoptable == False:
                  UserProfile.objects.filter(user=user).update(adoptable=False)
                  
-            UserProfile.objects.filter(user=user).update(first_name=first_name, last_name=last_name, phone=phone, city=city, status=status, credentials=credentials)
+            UserProfile.objects.filter(user=user).update(pet_name=pet_name, owner_name=owner_name, phone=phone, city=city, status=status, credentials=credentials)
 
             user_profile = UserProfile.objects.get(user=user)
             user_profile = UserProfileSerializer(user_profile)

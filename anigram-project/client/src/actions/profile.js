@@ -37,7 +37,7 @@ export const load_user = () => async dispatch => {
     }
 }
 
-export const update_profile = (first_name, last_name, phone, city, status, adoptable, credentials) => async dispatch => {
+export const update_profile = (pet_name, owner_name, phone, city, status, adoptable, credentials) => async dispatch => {
     const config = {
         headers: {
           'Accept': "application/json",
@@ -48,8 +48,8 @@ export const update_profile = (first_name, last_name, phone, city, status, adopt
 
     const body = JSON.stringify({
         'withCredentials': true,
-        first_name,
-        last_name,
+        pet_name,
+        owner_name,
         phone,
         city,
         status,

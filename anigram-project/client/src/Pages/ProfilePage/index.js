@@ -5,8 +5,8 @@ import { update_profile } from '../../actions/profile';
 
 const ProfilePage = ({
     update_profile,
-    first_name_global,
-    last_name_global,
+    pet_name_global,
+    owner_name_global,
     phone_global,
     city_global,
     status_global,
@@ -16,8 +16,8 @@ const ProfilePage = ({
     const [profileUpdated, setProfileUpdated] = useState(false);
 
     const [formData, setFormData] = useState({
-        first_name: '',
-        last_name: '',
+        pet_name: '',
+        owner_name: '',
         phone: '',
         city: '',
         status: '',
@@ -28,26 +28,26 @@ const ProfilePage = ({
     console.log (status_global);
     const navigate = useNavigate();
 
-    const { first_name, last_name, phone, city, status, adoptable, credentials } = formData;
+    const { pet_name, owner_name, phone, city, status, adoptable, credentials } = formData;
 
     useEffect(() => {
         setFormData({
-            first_name: first_name_global,
-            last_name: last_name_global,
+            pet_name: pet_name_global,
+            owner_name: owner_name_global,
             phone: phone_global,
             city: city_global,
             status: status_global,
             adoptable: adoptable_global,
             credentials: credentials_global
         })
-    }, [first_name_global])
+    }, [pet_name_global])
     const onChange = e => setFormData({...formData, [e.target.name]: e.target.value});
 
     const onSubmit = e => {
         e.preventDefault();
 
         const updateProfile = async () => {
-             await update_profile(first_name, last_name, phone, city, status, adoptable, credentials);
+             await update_profile(pet_name, owner_name, phone, city, status, adoptable, credentials);
              setProfileUpdated(!profileUpdated);
         };
         updateProfile();
@@ -68,26 +68,26 @@ const ProfilePage = ({
             
             <form onSubmit={e=> onSubmit(e)}>
                 <div className="form-group">
-                    <label className="form-label" htmlFor="first_name">First Name</label>
+                    <label className="form-label" htmlFor="pet_name">Pet Name</label>
                     <input
                         className="form-control"
                         type="text"
-                        name="first_name"
-                        placeholder={`${first_name_global}`}
+                        name="pet_name"
+                        placeholder={`${pet_name_global}`}
                         onChange={e => onChange(e)}
-                        value={first_name}
+                        value={pet_name}
 
                     />
                 </div>
                 <div className="form-group">
-                    <label className="form-label" htmlFor="last_name">Last Name</label>
+                    <label className="form-label" htmlFor="owner_name">Owner Name</label>
                     <input
                         className="form-control"
                         type="text"
-                        name="last_name"
-                        placeholder={`${last_name_global}`}
+                        name="owner_name"
+                        placeholder={`${owner_name_global}`}
                         onChange={e => onChange(e)}
-                        value={last_name}
+                        value={owner_name}
 
                     />
                 </div>
@@ -162,8 +162,8 @@ const ProfilePage = ({
 
 
 const mapStateToProps = state => ({
-    first_name_global: state.profile.first_name,
-    last_name_global: state.profile.last_name,
+    pet_name_global: state.profile.pet_name,
+    owner_name_global: state.profile.owner_name,
     phone_global: state.profile.phone,
     city_global: state.profile.city,
     status_global: state.profile.status,
