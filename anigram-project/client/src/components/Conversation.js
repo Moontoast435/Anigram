@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { TiArrowForwardOutline, TiArrowBackOutline } from "react-icons/ti";
 
 const Conversation = ({ chatlog, username, target, sendMsg, handleBack }) => {
   const [input, setInput] = useState();
@@ -29,7 +30,10 @@ const Conversation = ({ chatlog, username, target, sendMsg, handleBack }) => {
           </div>
         </>
       ))}
-      <button className='go-back-btn' onClick={handleBack}> go back </button>
+      <button className='go-back-btn' onClick={handleBack}> {" "}
+              <span className="icon">
+                <TiArrowBackOutline />
+              </span></button>
       <form className="chatForm" onSubmit={handleSubmit}>
         <input
           name="msg-input"

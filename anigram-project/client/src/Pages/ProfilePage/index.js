@@ -46,12 +46,15 @@ const ProfilePage = ({
 
 
     const onSubmit = e => {
+
         const updateProfile = async () => {
              await update_profile(pet_name, owner_name, phone, city, status, adoptable, credentials);
              setProfileUpdated(!profileUpdated);
         };
         updateProfile();
+    
     }
+
     
      const toggleAdoption = () => {
         if (adoptable === false ) {

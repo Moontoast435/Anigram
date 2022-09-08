@@ -1,10 +1,10 @@
 @import url("https://fonts.googleapis.com/css2?family=Dancing+Script&family=Quicksand&display=swap");
 
 :root {
-  --profilegoldlight: #f5da81;
-  --profilegold: #ecc541;
-  --profilewhite: rgb(245, 245, 245);
-  --profileblack: rgb(39, 39, 39);
+  --postgoldlight: #f5da81;
+  --postgold: #ecc541;
+  --postwhite: rgb(245, 245, 245);
+  --postblack: rgb(39, 39, 39);
 }
 
 * {
@@ -16,7 +16,7 @@ body {
   background-color: var(--postblack);
 }
 
-.profileContainer {
+.editContainer {
   height: 100%;
   width: 100%;
   text-transform: uppercase;
@@ -30,7 +30,7 @@ body {
   font-family: Quicksand;
 }
 
-.profileWrapper {
+.editWrapper {
   display: flex;
   align-items: center;
   text-align: center;
@@ -46,20 +46,20 @@ body {
   border: 5px solid var(--postgold);
 }
 
-.profileWrapper h1 {
+.editWrapper h1 {
   margin: 0;
   font-size: 25px !important;
 }
 
-.profileWrapper p {
+.editWrapper p {
   margin: 0;
   font-size: 15px !important;
 }
 
-.profileWrapper img,
-.profileWrapper form,
-.profileWrapper label,
-.profileWrapper button {
+.editWrapper img,
+.editWrapper form,
+.editWrapper label,
+.editWrapper button {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -68,7 +68,7 @@ body {
   font-size: 15px !important;
 }
 
-.profileWrapper form input {
+.editWrapper form input {
   font-family: Quicksand;
   background-color: white;
   color: var(--postblack);
@@ -80,12 +80,12 @@ body {
   text-transform: uppercase;
 }
 
-.profileWrapper form input:focus {
+.editWrapper form input:focus {
   outline: none;
-  border: 1px solid var(--logingoldlight);
+  border: 1px solid var(--postgoldlight);
 }
 
-.profileWrapper button {
+.editWrapper button {
   font-family: Quicksand;
   text-transform: uppercase;
   font-size: 1rem;
@@ -98,7 +98,7 @@ body {
   margin-top: 10px;
 }
 
-.profileWrapper button:focus,
-.profileWrapper button:hover {
+.editWrapper button:focus,
+.editWrapper button:hover {
   background-color: var(--postgold);
 }
