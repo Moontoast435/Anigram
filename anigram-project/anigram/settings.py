@@ -138,9 +138,8 @@ mimetypes.add_type("application/javascript", ".js", True)
 mimetypes.add_type('text/html', ".html", True)
 STATIC_URL = '/static/'
 
-WHITENOISE_MIMETYPES = {'.html': 'application/js'}
 # STATIC_ROOT = BASE_DIR / "staticfiles"
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATIC_ROOT = os.path.join(BASE_DIR, 'client/static/client')
 
 
 STATICFILES_DIRS = [
