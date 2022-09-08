@@ -1,0 +1,83 @@
+@import url("https://fonts.googleapis.com/css2?family=Dancing+Script&family=Quicksand&display=swap");
+
+:root {
+  --viewgoldlight: #f5da81;
+  --viewgold: #ecc541;
+  --viewwhite: rgb(245, 245, 245);
+  --viewblack: rgb(39, 39, 39);
+}
+
+* {
+    box-sizing: border-box;
+    font-weight: lighter;
+  }
+
+  .viewContainer {
+    height: 100%;
+    width: 100%;
+    text-transform: uppercase;
+    overflow: auto;
+    font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+  }
+
+  .viewWrapper {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    flex-direction: column;
+    position: absolute;
+    top: 12%;
+    left: 5%;
+    right: 5%;
+    padding: 20px 30px;
+    background-color: var(--viewwhite);
+    border-radius: 20px;
+    border: 5px solid var(--viewgold);
+  }
+
+  .viewWrapper button {
+    font-family: Quicksand;
+    text-transform: uppercase;
+    padding: 7px 20px;
+    border-radius: 20px;
+    border: none;
+    background-color: var(--viewgoldlight);
+    color: var(--viewblack);
+    box-shadow: 5px 5px 8px 1px rgb(209 209 209);
+    margin-top: 10px;
+    text-align: center;
+    align-items: center;
+  }
+
+  .viewWrapper h1 {
+    margin: 0;
+    font-size: 25px !important;
+  }
+  
+  .viewWrapper p {
+    margin: 0;
+    font-size: 15px !important;
+  }
+
+.viewWrapper img,
+.viewWrapper form,
+.viewWrapper label{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  font-family: Quicksand;
+  text-transform: uppercase;
+  font-size: 15px !important;
+}
+
+.viewWrapper form input,
+.viewWrapper h1,
+.viewWrapper p
+{
+    margin-bottom: 1rem;
+}

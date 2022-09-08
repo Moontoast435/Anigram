@@ -4,7 +4,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { update_profile } from '../../actions/profile';
 import axios  from 'axios'
 import { setChatUser} from '../../actions/selected';
-
+import './style.css'
 const ViewProfilePage = () => {
     const [userData, setUserData] = useState()
     const [currentUser, setCurrentUser] = useState(null)
@@ -26,8 +26,10 @@ const ViewProfilePage = () => {
             let userList = rawUsers
             let result = userList.filter(user => user.username.includes(query))
             setUsers(result)
+        } else{
+            setUsers(rawUsers)
         }
-        setUsers(rawUsers)
+        
     }
 
 
@@ -43,7 +45,8 @@ const ViewProfilePage = () => {
 
     const handleSearch = (e) => {
         e.preventDefault()
-        filterUsers(e.target.elements['query'].value)
+        // filterUsers(e.target.elements['query'].value)
+        filterUsers(e.target.value)
     }
 
     const loadProfile = async (user) => {
@@ -61,12 +64,15 @@ const ViewProfilePage = () => {
     }
 
     return (
-        <div className="user-page">
-            <h1> Welcome to the user search</h1>
-            <form onSubmit={handleSearch}>
-                <input name='query' type="text" />
-                <input type="submit" value="submit"/>
+        <div className="viewContainer">
+            <div className='viewWrapper'>
+            {userData ? null : <>
+                <h1> Find a user: </h1>
+            <form onSubmit={(e) => e.preventDefault()}>
+                <input name='query' type="text" onChange={handleSearch} />
             </form>
+            </>}
+            
 
             {users ? <div>
                 {users.map(user => {return <div className="user-option"> 
@@ -76,9 +82,9 @@ const ViewProfilePage = () => {
                     </div>: null}
 
             {userData? <div>
-                
+                <h1>{userData.owner_name ? userData.owner_name : currentUser}'s profile</h1>
                 <p>Pet Name: {userData.pet_name}</p>
-                { userData.adoptable ? <p>Looking to be adopted </p> : null}
+                { userData.adoptable ? <p><i>Looking to be adopted </i></p> : null}
                 <p>Status: {userData.status}</p>
                 <p>Owner: {userData.owner_name}</p>
                 <p>Contact Number: {userData.phone}</p>
@@ -87,10 +93,11 @@ const ViewProfilePage = () => {
                 <button onClick={() => {
                     setUserData(null)
                     filterUsers()
-                }}>Go back</button>
-                <button onClick={() => linkToChat(currentUser)}>Start a chat with {userData.owner_name}</button>
+                }}>Find another user</button>
+                <button onClick={() => linkToChat(currentUser)}>Start a chat with {userData.owner_name ? userData.owner_name : currentUser}</button>
             </div> : null
             }
+            </div>
         </div>
 
 
