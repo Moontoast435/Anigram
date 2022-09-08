@@ -3,7 +3,7 @@ import { connect, useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import { update_profile } from '../../actions/profile';
 import axios  from 'axios'
-import { setChatUser, setProfileUser } from '../../actions/selected';
+import { setChatUser} from '../../actions/selected';
 
 const ViewProfilePage = () => {
     const [userData, setUserData] = useState()
@@ -73,21 +73,19 @@ const ViewProfilePage = () => {
                     </div>: null}
 
             {userData? <div>
+                
+                <p>Pet Name: {userData.pet_name}</p>
+                <p>Owner: {userData.owner_name}</p>
+                <p>Contact Number: {userData.phone}</p>
+                <p>City: {userData.city}</p>
+                <p>Credentials: {userData.credentials}</p>
                 <button onClick={() => {
                     setUserData(null)
                     filterUsers()
                 }}>Go back</button>
-                <p>Name: {userData.first_name} {userData.last_name}</p>
-                <p>Contact Number: {userData.phone}</p>
-                <p>City: {userData.city}</p>
-                <p>Credentials: {userData.credentials}</p>
-
-                <button onClick={() => linkToChat(currentUser)}>Start a chat with {userData.first_name}</button>
-            </div>
-           
-                : null
+                <button onClick={() => linkToChat(currentUser)}>Start a chat with {userData.owner_name}</button>
+            </div> : null
             }
-            
         </div>
 
 

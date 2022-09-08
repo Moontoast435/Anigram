@@ -19,7 +19,6 @@ const Conversation = ({chatlog, username, target, sendMsg, handleBack}) => {
 
     return (
         <div className="chatlog" role="chatLog">
-            <button className='go-back-btn' onClick={handleBack}> go back </button>
             <h2>Conversation with {target}</h2>
             {chatlog.map(chat => <>
                     <div className={`chat-single ${username == chat.sender ? "from-user" : "from-target"}`}>
@@ -28,6 +27,7 @@ const Conversation = ({chatlog, username, target, sendMsg, handleBack}) => {
                     </div>
                 </>
             )}
+            <button className='go-back-btn' onClick={handleBack}> go back </button>
             <form onSubmit={handleSubmit}>
                 <input name="msg-input" type="text" value={input} onChange={handleInput} placeholder={`send a message`}/>
                 <input type="submit" value="Send"/>
