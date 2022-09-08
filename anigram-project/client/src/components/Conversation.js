@@ -1,39 +1,47 @@
-import React, {useState} from 'react';
+import React, { useState } from "react";
 
-const Conversation = ({chatlog, username, target, sendMsg, handleBack}) => {
+const Conversation = ({ chatlog, username, target, sendMsg, handleBack }) => {
+  const [input, setInput] = useState();
 
-    const [input, setInput] = useState()
+  const handleInput = (e) => {
+    setInput(e.target.value);
+  };
 
-    const handleInput = (e) => {
-        setInput(e.target.value)
-    }
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    // do something
+    setInput("");
+    e.target.elements["msg-input"].value = "";
+    sendMsg(input, target);
+  };
 
-    const handleSubmit = (e) => {
-        e.preventDefault()
-        // do something
-        setInput('')
-        e.target.elements['msg-input'].value = ''
-        sendMsg(input, target)
-        
-    }
-
-    return (
-        <div className="chatlog" role="chatLog">
-            <h2>Conversation with {target}</h2>
-            {chatlog.map(chat => <>
-                    <div className={`chat-single ${username == chat.sender ? "from-user" : "from-target"}`}>
-                        <p>{chat.message}</p>
-                        
-                    </div>
-                </>
-            )}
-            <button className='go-back-btn' onClick={handleBack}> go back </button>
-            <form onSubmit={handleSubmit}>
-                <input name="msg-input" type="text" value={input} onChange={handleInput} placeholder={`send a message`}/>
-                <input type="submit" value="Send"/>
-            </form>
-        </div>
-    );
-}
+  return (
+    <div className="chatlog">
+      <h2>Your conversion with {target} starts here</h2>
+      {chatlog.map((chat) => (
+        <>
+          <div
+            className={`chat-single ${
+              username == chat.sender ? "from-user" : "from-target"
+            }`}
+          >
+            <p>{chat.message}</p>
+          </div>
+        </>
+      ))}
+      <button className='go-back-btn' onClick={handleBack}> go back </button>
+      <form className="chatForm" onSubmit={handleSubmit}>
+        <input
+          name="msg-input"
+          type="text"
+          value={input}
+          onChange={handleInput}
+          placeholder={`send a message`}
+        />
+        <input type="submit" value="Send" />
+      </form>
+    </div>
+  );
+};
 
 export default Conversation;

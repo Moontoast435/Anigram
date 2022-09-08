@@ -1,0 +1,131 @@
+@import url("https://fonts.googleapis.com/css2?family=Dancing+Script&family=Quicksand&display=swap");
+
+:root {
+  --feedgoldlight: #f5da81;
+  --feedgold: #ecc541;
+  --feedwhite: rgb(245, 245, 245);
+  --feedblack: rgb(39, 39, 39);
+}
+
+* {
+  box-sizing: border-box;
+  font-weight: lighter;
+}
+
+body {
+  background-color: var(--feedblack);
+}
+
+.feedContainer {
+  height: 100%;
+  width: 100%;
+  overflow: auto;
+  font-size: 1.5rem;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+  font-family: Quicksand;
+}
+
+.feedWrapper {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+  flex-direction: column;
+  position: absolute;
+  top: 11%;
+  left: 0%;
+  right: 0%;
+  bottom: 8.5%;
+  background-color: var(--feedblack);
+  overflow-x: hidden;
+  height: fit-content;
+  padding-bottom: 70px;
+}
+
+.feedWrapper .feedPost {
+  border-top: 1px solid rgb(70, 70, 70);
+  margin-bottom: 20px;
+}
+
+.feedPost p {
+  margin: 10px;
+  padding: 0;
+  color: var(--feedgold);
+  text-align: start;
+  overflow-x: hidden;
+}
+
+.feedPost {
+  min-width: 390px;
+  max-width: 390px;
+  min-height: auto;
+  max-height: auto;
+  overflow-x: hidden;
+}
+
+.feedWrapper img {
+  min-width: 390px;
+  max-width: 390px;
+  min-height: auto;
+  max-height: auto;
+  border-top: 1px solid rgb(70, 70, 70);
+  border-bottom: 1px solid rgb(70, 70, 70);
+}
+
+.feedUser {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.feedUser2 {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.feedDesc p {
+  color: var(--feedwhite) !important;
+  font-size: 1rem !important;
+}
+
+.feedUser2 a .icon {
+  font-size: 1em;
+  text-align: center;
+  color: var(--navwhite);
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  margin: 10px;
+  display: flex;
+  align-items: center;
+}
+
+.feedUser button .icon {
+  font-size: 2em;
+  text-align: center;
+  color: var(--navwhite);
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  margin: 10px;
+  display: flex;
+  align-items: center;
+}
+
+.feedUser button {
+  max-height: fit-content;
+  max-width: fit-content;
+  background: transparent;
+  border: none;
+  padding: 0;
+}
+
+.feedUser:hover a .icon,
+.feedUser:active a .icon {
+  color: var(--navgold);
+  -webkit-tap-highlight-color: transparent;
+}
