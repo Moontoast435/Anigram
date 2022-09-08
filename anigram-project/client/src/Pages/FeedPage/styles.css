@@ -129,3 +129,20 @@ body {
   color: var(--navgold);
   -webkit-tap-highlight-color: transparent;
 }
+
+.feedWrapper input {
+  font-family: Quicksand;
+  background-color: rgb(54, 54, 54);
+  color: var(--chatwhite);
+  font-size: 13px !important;
+  margin: 5px 5px;
+  border: 1px solid transparent;
+  border-radius: 7px;
+  padding: 5px 15px;
+  text-transform: uppercase;
+}
+
+.feedWrapper input:focus {
+  outline: none;
+  border: 1px solid rgb(70, 70, 70);
+}

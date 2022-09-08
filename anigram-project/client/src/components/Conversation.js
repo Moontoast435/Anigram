@@ -30,20 +30,24 @@ const Conversation = ({ chatlog, username, target, sendMsg, handleBack }) => {
           </div>
         </>
       ))}
-      <button className='go-back-btn' onClick={handleBack}> {" "}
-              <span className="icon">
-                <TiArrowBackOutline />
-              </span></button>
-      <form className="chatForm" onSubmit={handleSubmit}>
-        <input
-          name="msg-input"
-          type="text"
-          value={input}
-          onChange={handleInput}
-          placeholder={`send a message`}
-        />
-        <input type="submit" value="Send" />
-      </form>
+      <div className="chatBox">
+        <form className="chatForm" onSubmit={handleSubmit}>
+          <button onClick={handleBack}>
+            {" "}
+            <span className="icon">
+              <TiArrowBackOutline />
+            </span>
+          </button>
+          <input
+            name="msg-input"
+            type="text"
+            value={input}
+            onChange={handleInput}
+            placeholder={`send a message`}
+          />
+          <input type="submit" value="Send" />
+        </form>
+      </div>
     </div>
   );
 };
