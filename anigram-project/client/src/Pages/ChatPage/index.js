@@ -22,7 +22,7 @@ const ChatPage = () => {
 
     useEffect(() => {
         try{
-        let newSocket = new WebSocket("ws://anigram-application.herokuapp.com/ws/ac/");
+        let newSocket = new WebSocket("ws://mysite-wlwx.onrender.com/ws/ac/");
         newSocket.onmessage = (data) => {
             let response = JSON.parse(data.data)
             handleResponse(response)
