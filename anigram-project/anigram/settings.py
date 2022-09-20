@@ -101,7 +101,7 @@ CHANNEL_LAYERS = {
 
 DATABASES = {}
 DATABASES['default'] = dj_database_url.config(        # Feel free to alter this value to suit your needs.        
-default='postgresql://postgres:postgres@localhost:5432/mysite',        
+default='postgres://mysite_jwg2_user:9hiQtNZ80FutfIdDMcqDoUwiP2qBMEoF@dpg-cckvc9ta499cqad5vajg-a/mysite_jwg2',        
 conn_max_age=600    
 )
 
