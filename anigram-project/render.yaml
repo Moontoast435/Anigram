@@ -1,14 +1,14 @@
 databases:
-  - name: anigram
+  - name: mysite
     databaseName: mysite
-    user: anigram
+    user: mysite
 
 services:
   - type: web
     name: anigram
     env: python
     buildCommand: "_scripts/build.sh"
-    startCommand: ALLOWED_HOSTS=".onrender.com" "gunicorn anigram.wsgi"
+    startCommand: "gunicorn anigram.wsgi"
     envVars:
       - key: DATABASE_URL
         fromDatabase:
