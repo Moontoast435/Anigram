@@ -1,0 +1,20 @@
+databases:
+  - name: mysite
+    databaseName: mysite
+    user: mysite
+
+services:
+  - type: web
+    name: mysite
+    env: python
+    buildCommand: "_scripts/build.sh"
+    startCommand: "gunicorn anigram.wsgi"
+    envVars:
+      - key: DATABASE_URL
+        fromDatabase:
+          name: mysite
+          property: connectionString
+      - key: SECRET_KEY
+        generateValue: true
+      - key: WEB_CONCURRENCY
+        value: 4
