@@ -22,7 +22,7 @@ export const checkAuthenticated = () => async dispatch => {
   };
   
   try {
-      const res = await axios.get(`https://mysite-wlwx.onrender.com/accounts/authenticated`, config);
+      const res = await axios.get(`https://anigram-application.herokuapp.com/accounts/authenticated`, config);
       console.log(res);
       if (res.data.error || res.data.isAuthenticated === 'error') {
           dispatch({
@@ -63,7 +63,7 @@ export const login = (username, password) => async (dispatch) => {
 
   try {
     const res = await axios.post(
-      `https://mysite-wlwx.onrender.com/accounts/login`,
+      `https://anigram-application.herokuapp.com/accounts/login`,
       body,
       config
     );
@@ -101,7 +101,7 @@ export const logout = () => async (dispatch) => {
 
   try {
     const res = await axios.post(
-      `https://mysite-wlwx.onrender.com/accounts/logout`,
+      `https://anigram-application.herokuapp.com/accounts/logout`,
       body,
       config
     );
@@ -136,7 +136,7 @@ export const register =
 
     try {
       const res = await axios.post(
-        `https://mysite-wlwx.onrender.com/accounts/register`,
+        `https://anigram-application.herokuapp.com/accounts/register`,
         body,
         config
       );

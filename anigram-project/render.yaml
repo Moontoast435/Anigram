@@ -5,7 +5,7 @@ databases:
 
 services:
   - type: web
-    name: anigram
+    name: mysite
     env: python
     buildCommand: "_scripts/build.sh"
     startCommand: "gunicorn anigram.wsgi"

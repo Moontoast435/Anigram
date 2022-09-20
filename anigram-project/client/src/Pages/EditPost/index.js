@@ -12,7 +12,7 @@ const EditPost = () => {
   const { id } = useParams();
 
   useEffect(() => {
-    axios.get(`https://mysite-wlwx.onrender.com/posts/api/post/${id}`).then((res) => {
+    axios.get(`https://anigram-application.herokuapp.com/posts/api/post/${id}`).then((res) => {
       setDescription(res.data.description);
       setUserName(res.data.username);
       setImageUrl(res.data.image_url);
@@ -35,7 +35,7 @@ const EditPost = () => {
       image_url: image_url,
     };
     axios
-      .put(`https://mysite-wlwx.onrender.com/posts/api/post/${id}/update`, data, config)
+      .put(`https://anigram-application.herokuapp.com/posts/api/post/${id}/update`, data, config)
       .then(
         setTimeout(() => {
           navigate("/feed");

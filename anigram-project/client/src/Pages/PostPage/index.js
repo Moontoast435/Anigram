@@ -50,7 +50,7 @@ const PostPage = () => {
 
     console.log(username);
     console.log(form_data);
-    await fetch(`https://mysite-wlwx.onrender.com/posts/api/post/create`, {
+    await fetch(`https://anigram-application.herokuapp.com/posts/api/post/create`, {
       method: "POST",
       headers: {
         "X-CSRFToken": Cookies.get("csrftoken"),

@@ -31,7 +31,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY', default='your secret key')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ["*"]
+ALLOWED_HOSTS = []
 
 RENDER_EXTERNAL_HOSTNAME = os.environ.get('RENDER_EXTERNAL_HOSTNAME')
 if RENDER_EXTERNAL_HOSTNAME:    
@@ -101,7 +101,7 @@ CHANNEL_LAYERS = {
 
 DATABASES = {}
 DATABASES['default'] = dj_database_url.config(        # Feel free to alter this value to suit your needs.        
-default='postgres://mysite_jwg2_user:9hiQtNZ80FutfIdDMcqDoUwiP2qBMEoF@dpg-cckvc9ta499cqad5vajg-a/mysite_jwg2',        
+default='postgresql://postgres:postgres@localhost:5432/mysite',        
 conn_max_age=600    
 )
 
@@ -151,6 +151,7 @@ if not DEBUG:
 # STATICFILES_DIRS = [
 #     os.path.join(BASE_DIR, 'static'),
 # ]
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field

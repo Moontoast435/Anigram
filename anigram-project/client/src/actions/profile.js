@@ -15,7 +15,7 @@ export const load_user = () => async dispatch => {
         },
       };
     try {
-    const res = await axios.get(`https://mysite-wlwx.onrender.com/profile/user`, config);
+    const res = await axios.get(`https://anigram-application.herokuapp.com/profile/user`, config);
 
     if (res.data.error) {
         dispatch({
@@ -58,7 +58,7 @@ export const update_profile = (pet_name, owner_name, phone, city, status, adopta
     })
 
     try {
-        const res = await axios.put(`https://mysite-wlwx.onrender.com/profile/update`, body, config)
+        const res = await axios.put(`https://anigram-application.herokuapp.com/profile/update`, body, config)
 
         if (res.data.profile && res.data.username) {
             dispatch({
