@@ -26,12 +26,12 @@ const FeedPage = () => {
   }, []);
 
   const getPosts = () => {
-    fetch("http://127.0.0.1:8000/posts/api/post")
+    fetch("https://anigram-application.herokuapp.com/posts/api/post")
       .then((response) => response.json())
       .then((data) => setPosts(data));
   };
   const deletePost = (id) => {
-    fetch(`http://127.0.0.1:8000/posts/api/post/${id}/delete`, {
+    fetch(`https://anigram-application.herokuapp.com/posts/api/post/${id}/delete`, {
       method: "DELETE",
       headers: {
         "X-CSRFToken": Cookies.get("csrftoken"),

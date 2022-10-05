@@ -19,7 +19,7 @@ const PostPage = () => {
   // const handleSubmit = async (event) => {
   //   event.preventDefault();
   //   const post = { description, image_url, username };
-  //   await fetch('http://127.0.0.1:8000/posts/api/post/create', {
+  //   await fetch('https://anigram-application.herokuapp.com/posts/api/post/create', {
   //     method: 'POST',
   //     headers: {
   //       'Content-Type': 'application/json',
@@ -50,7 +50,7 @@ const PostPage = () => {
 
     console.log(username);
     console.log(form_data);
-    await fetch(`http://127.0.0.1:8000/posts/api/post/create`, {
+    await fetch(`https://anigram-application.herokuapp.com/posts/api/post/create`, {
       method: "POST",
       headers: {
         "X-CSRFToken": Cookies.get("csrftoken"),
@@ -64,7 +64,7 @@ const PostPage = () => {
   //   event.preventDefault();
   //   const post = { description, image_url };
 
-  //   await axios.post('http://127.0.0.1:8000/posts/api/post/create', {
+  //   await axios.post('https://anigram-application.herokuapp.com/posts/api/post/create', {
   //     // method: 'POST',
   //     headers: {
   //       'Content-Type': 'application/json',
