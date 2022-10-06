@@ -2,15 +2,15 @@ import React, { useState } from "react";
 import { TiArrowForwardOutline, TiArrowBackOutline } from "react-icons/ti";
 
 const Conversation = ({ chatlog, username, target, sendMsg, handleBack }) => {
-  const [input, setInput] = useState();
+  const [input, setInput] = useState("");
 
   const handleInput = (e) => {
+    e.preventDefault();
     setInput(e.target.value);
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // do something
     setInput("");
     e.target.elements["msg-input"].value = "";
     sendMsg(input, target);
@@ -32,7 +32,7 @@ const Conversation = ({ chatlog, username, target, sendMsg, handleBack }) => {
       ))}
       <div>
         <form onSubmit={handleSubmit}>
-          <button onClick={handleBack}>
+          <button type="button" onClick={handleBack}>
             {" "}
             <span className="icon">
               <TiArrowBackOutline />

@@ -13,6 +13,7 @@ const PostPage = () => {
   const [image_url, setImageUrl] = useState(null);
 
   const username = useSelector((state) => state.profile.username);
+
   // console.log(username);
   // console.log('hey there');
 
@@ -32,6 +33,7 @@ const PostPage = () => {
   //   console.log(username);
   // };
 
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -48,9 +50,9 @@ const PostPage = () => {
       return false;
     }
 
-    console.log(username);
-    console.log(form_data);
-    await fetch(`https://anigram-application.herokuapp.com/posts/api/post/create`, {
+
+    await fetch(`http://127.0.0.1:8000/posts/api/post/create`, {
+
       method: "POST",
       headers: {
         "X-CSRFToken": Cookies.get("csrftoken"),
@@ -59,6 +61,7 @@ const PostPage = () => {
     });
     navigate("/feed");
   };
+
 
   // const handleSubmit = async (event) => {
   //   event.preventDefault();
@@ -79,6 +82,7 @@ const PostPage = () => {
 
   //   navigate('/main');
   // };
+
 
   return (
     <div className="postContainer">

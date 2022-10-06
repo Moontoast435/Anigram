@@ -18,7 +18,6 @@ const ViewProfilePage = () => {
         let response = await axios.get('https://anigram-application.herokuapp.com/accounts/get_users')
         setRawUsers(response.data)
         setUsers(response.data)
-        console.log(response.data) //array of users
     }
 
     const filterUsers =  (query=null) => {
@@ -52,7 +51,6 @@ const ViewProfilePage = () => {
     const loadProfile = async (user) => {
         let data = await axios(`https://anigram-application.herokuapp.com/profile/user/${user}`)
         let response = await JSON.parse(data.data.profile)
-        console.log(response)
         setUserData(response)
         setCurrentUser(data.data.username)
         setUsers(null)

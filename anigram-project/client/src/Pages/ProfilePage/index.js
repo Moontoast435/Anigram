@@ -26,7 +26,6 @@ const ProfilePage = ({
         credentials: '',
     })
     
-    console.log (status_global);
     const navigate = useNavigate();
 
     const { pet_name, owner_name, phone, city, status, adoptable, credentials } = formData;

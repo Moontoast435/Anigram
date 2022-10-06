@@ -6,7 +6,7 @@ const SearchPage = ({setPosts}) => {
 
   const searchHandle = async (e) => {
     let key = e.target.value;
-    console.log(key);
+
     let result = await fetch(
       `https://anigram-application.herokuapp.com/posts/api/post?search=${key}`
     );
@@ -14,11 +14,7 @@ const SearchPage = ({setPosts}) => {
     result = await result.json();
     //setSearchValue(result);
     setPosts(result)
-    console.log(searchvalue);
-    if (result) {
-      console.log(result);
-      // setPosts(result);
-    }
+
   };
   return (
     <div className='filter-feed'>

@@ -19,7 +19,6 @@ const FeedPage = () => {
   // }
 
   const username = useSelector((state) => state.profile.username);
-  console.log(username);
 
   useEffect(() => {
     getPosts();
@@ -38,7 +37,6 @@ const FeedPage = () => {
       },
     }).then((result) => {
       result.json().then((resp) => {
-        console.log(resp);
         getPosts();
       });
     });
@@ -49,7 +47,7 @@ const FeedPage = () => {
     navigate("../view");
   };
 
-  const postsDisplay = posts.map((post, i) => {
+  const postsDisplay = posts.reverse().map((post, i) => {
     return (
       <>
         <div>
