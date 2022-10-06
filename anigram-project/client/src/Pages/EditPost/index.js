@@ -12,7 +12,7 @@ const EditPost = () => {
   const { id } = useParams();
 
   useEffect(() => {
-    axios.get(`http://127.0.0.1:8000/posts/api/post/${id}`).then((res) => {
+    axios.get(`https://anigram-application.herokuapp.com/posts/api/post/${id}`).then((res) => {
       setDescription(res.data.description);
       setUserName(res.data.username);
       setImageUrl(res.data.image_url);
@@ -35,7 +35,7 @@ const EditPost = () => {
       image_url: image_url,
     };
     axios
-      .put(`http://127.0.0.1:8000/posts/api/post/${id}/update`, data, config)
+      .put(`https://anigram-application.herokuapp.com/posts/api/post/${id}/update`, data, config)
       .then(
         setTimeout(() => {
           navigate("/feed");

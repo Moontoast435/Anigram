@@ -14,6 +14,26 @@ const PostPage = () => {
 
   const username = useSelector((state) => state.profile.username);
 
+  // console.log(username);
+  // console.log('hey there');
+
+  // const handleSubmit = async (event) => {
+  //   event.preventDefault();
+  //   const post = { description, image_url, username };
+  //   await fetch('https://anigram-application.herokuapp.com/posts/api/post/create', {
+  //     method: 'POST',
+  //     headers: {
+  //       'Content-Type': 'application/json',
+  //       'X-CSRFToken': Cookies.get('csrftoken'),
+  //     },
+  //     body: JSON.stringify(post),
+  //   });
+  //   console.log(post);
+  //   navigate('/main');
+  //   console.log(username);
+  // };
+
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -30,7 +50,9 @@ const PostPage = () => {
       return false;
     }
 
+
     await fetch(`http://127.0.0.1:8000/posts/api/post/create`, {
+
       method: "POST",
       headers: {
         "X-CSRFToken": Cookies.get("csrftoken"),
@@ -39,6 +61,28 @@ const PostPage = () => {
     });
     navigate("/feed");
   };
+
+
+  // const handleSubmit = async (event) => {
+  //   event.preventDefault();
+  //   const post = { description, image_url };
+
+  //   await axios.post('https://anigram-application.herokuapp.com/posts/api/post/create', {
+  //     // method: 'POST',
+  //     headers: {
+  //       'Content-Type': 'application/json',
+  //       'X-CSRFToken': Cookies.get('csrftoken'),
+  //     },
+  //     body: JSON.stringify(post),
+  //     // body: JSON.stringify({ data: base64EncodedImage }),
+  //   });
+  //   console.log(post.description);
+  //   console.log(image_url);
+  //   // console.log(username1);
+
+  //   navigate('/main');
+  // };
+
 
   return (
     <div className="postContainer">
