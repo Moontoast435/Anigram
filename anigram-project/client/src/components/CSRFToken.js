@@ -24,7 +24,7 @@ const [csrftoken, setcsrftoken] = useState('');
     useEffect(() => {
         const fetchData = async () => {
             try {
-                await axios.get(`https://anigram-application.herokuapp.com/accounts/csrf_cookie`)
+                await axios.get(`https://anigram.onrender.com/accounts/csrf_cookie`)
             } catch (err) {
 
             }
