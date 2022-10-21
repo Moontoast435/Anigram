@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from cloudinary.models import CloudinaryField
 
 # class Post(models.Model):
 #     title = models.CharField(max_length=100)
@@ -18,7 +19,7 @@ class Post(models.Model):
     # auto_now updates on each post update
     # created = models.DateTimeField(auto_now_add=True)
     # auto_now_add is updated only when a record is created
-    image_url = models.ImageField(upload_to='')
+    image_url = CloudinaryField('image_url')
     username = models.CharField(max_length=100)
 
 

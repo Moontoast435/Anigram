@@ -13,7 +13,15 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 from pathlib import Path
 import os
 import dj_database_url
+import cloudinary
+import cloudinary.uploader
+import cloudinary.api
 
+cloudinary.config( 
+  cloud_name = "ddabjymrm", 
+  api_key = "915278528112846", 
+  api_secret = "FvanHb3KRGWz6VrXAGplVQWa76I" 
+)
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -53,6 +61,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'channels',
     'chat',
+    'cloudinary'
 ]
 
 MIDDLEWARE = [
