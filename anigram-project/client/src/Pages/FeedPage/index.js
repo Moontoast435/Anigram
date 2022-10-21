@@ -64,7 +64,7 @@ const FeedPage = () => {
                 </button>
               ) : null}
             </div>
-            <img src={post.image_url} />
+            <img src={`https://res.cloudinary.com/ddabjymrm/${post.image_url}`} />
             <div className="feedDesc">
               <div className="feedUser2">
               <p>{post.username}</p>
