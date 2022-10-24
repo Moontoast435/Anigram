@@ -22,7 +22,7 @@ const ChatPage = () => {
 
     useEffect(() => {
         try{
-        let newSocket = new WebSocket("wss://0.0.0.0:10001");
+        let newSocket = new WebSocket("wss://0.0.0.0:10000");
         newSocket.onmessage = (data) => {
             let response = JSON.parse(data.data)
             handleResponse(response)
