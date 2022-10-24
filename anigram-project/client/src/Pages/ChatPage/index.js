@@ -22,7 +22,7 @@ const ChatPage = () => {
 
     useEffect(() => {
         try{
-        let newSocket = new WebSocket("wss://0.0.0.0:10000/ws/ac/");
+        let newSocket = new WebSocket("wss://anigram.onrender.com/ws/ac/");
         newSocket.onmessage = (data) => {
             let response = JSON.parse(data.data)
             handleResponse(response)
